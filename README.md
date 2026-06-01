@@ -71,9 +71,29 @@ Otvori `http://localhost:3000`.
 
 ## Roadmap
 
+### v0.2 — Korisnički pretinac (Poruke)
+
+- [ ] Ruta `/poruke` s listom poruka (primljene, nepročitane, arhivirane)
+- [ ] `MessageListItem` komponenta — pošiljatelj, naslov, datum, badge nepročitano
+- [ ] Detalj poruke — expand/collapse ili zasebna ruta `/poruke/[id]`
+- [ ] Paginacija ili infinite scroll za listu poruka
+- [ ] Prazno stanje (inbox zero ilustracija + poruka)
+- [ ] Loading skeleton i error stanje za svaki blok
+- [ ] Broj nepročitanih poruka u Sidebaru i BottomNav (badge na ikoni)
+- [ ] Playwright testovi: lista, detalj, mark-as-read, prazno stanje
+
+### Refaktori (code review nalazi)
+
+- [ ] **`DocListItem`** — ukloniti `isLast` prop, zamijeniti s CSS `.eg-divided-list > li:not(:last-child)` klasom
+- [ ] **`StatCard`** — `iconColor: string` zamijeniti semantičkim unionom (`"success" | "warning" | "error"`) umjesto raw CSS var stringa
+- [ ] **`TopAppBar`** — hardkodirani `aria-label="Obavijesti (1 nova)"` zamijeniti s `notificationCount` propom
+- [ ] **`globals.css`** — CSS pravilo `h1, h2, h3 { font-family: var(--font-display) }` promijeniti u `h1, h2` jer `h3` u dashboard komponentama overridea natrag na sans-serif inline stilom
+- [ ] **`globals.css`** — `@theme inline` blok je nepotpun (7/25 varijabli) — ili sve dodati ili ukloniti blok i ostati na čistim CSS varijablama
+- [ ] **Section-level error stanja** — dodati React ErrorBoundary wrappers po sekcijama (stats, predmeti, dokumenti) za granularniji error handling umjesto samo page-level `error.tsx`
+
+### Ostalo
+
 - [ ] Stranica Dokumenti
 - [ ] Stranica Zahtjevi (forma za novi zahtjev)
-- [ ] Stranica Poruke
 - [ ] Stranica Profil
-- [ ] Playwright testovi za svaki feature
 - [ ] Animacije prijelaza između stranica
