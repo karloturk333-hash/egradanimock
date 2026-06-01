@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icon } from "@/components/ui/Icon";
+import { NavIcon } from "@/components/layout/NavIcon";
 import { NAV_ITEMS } from "@/components/layout/nav-items";
 
 export function BottomNav() {
@@ -26,13 +26,15 @@ export function BottomNav() {
         padding: "8px 8px calc(8px + env(safe-area-inset-bottom)) 8px",
       }}
     >
-      {NAV_ITEMS.map(({ href, label, icon }) => {
+      {NAV_ITEMS.map(({ href, label, icon, unreadCount }) => {
         const active = pathname === href;
+        const hasUnread = unreadCount !== undefined && unreadCount > 0;
         return (
           <Link
             key={href}
             href={href}
             aria-current={active ? "page" : undefined}
+            aria-label={hasUnread ? `${label}, ${unreadCount} nepročitane` : undefined}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -45,7 +47,7 @@ export function BottomNav() {
               background: active ? "var(--color-primary-subtle)" : "transparent",
             }}
           >
-            <Icon name={icon} size={22} strokeWidth={active ? 2.4 : 2} />
+            <NavIcon icon={icon} size={22} active={active} unreadCount={unreadCount} />
             <span style={{ fontSize: "12px", fontWeight: active ? 600 : 500, letterSpacing: "0.02em" }}>
               {label}
             </span>

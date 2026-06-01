@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icon } from "@/components/ui/Icon";
+import { NavIcon } from "@/components/layout/NavIcon";
 import { NAV_ITEMS } from "@/components/layout/nav-items";
 
 export function Sidebar() {
@@ -49,13 +49,15 @@ export function Sidebar() {
         role="list"
         style={{ listStyle: "none", margin: "16px 0 0 0", padding: "0 12px", display: "flex", flexDirection: "column", gap: "4px" }}
       >
-        {NAV_ITEMS.map(({ href, label, icon }) => {
+        {NAV_ITEMS.map(({ href, label, icon, unreadCount }) => {
           const active = pathname === href;
+          const hasUnread = unreadCount !== undefined && unreadCount > 0;
           return (
             <li key={href}>
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
+                aria-label={hasUnread ? `${label}, ${unreadCount} nepročitane` : undefined}
                 className="eg-nav-link"
                 style={{
                   display: "flex",
@@ -70,7 +72,7 @@ export function Sidebar() {
                   textDecoration: "none",
                 }}
               >
-                <Icon name={icon} size={20} strokeWidth={active ? 2.4 : 2} />
+                <NavIcon icon={icon} size={20} active={active} unreadCount={unreadCount} />
                 {label}
               </Link>
             </li>

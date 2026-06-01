@@ -39,3 +39,21 @@ export type AsyncState<T> =
   | { status: "loading" }
   | { status: "error"; message: string }
   | { status: "success"; data: T };
+
+/** Poruka u korisničkom pretincu (inbox). */
+export interface Message {
+  id: string;
+  /** Identifikator pošiljatelja (institucije). */
+  senderId: string;
+  /** Naziv pošiljatelja, npr. "Porezna uprava". */
+  senderName: string;
+  subject: string;
+  /** Kratki tekst za prikaz u listi (max ~120 znakova). */
+  preview: string;
+  /** Puni sadržaj poruke (plain text). */
+  body: string;
+  /** ISO 8601, npr. "2026-05-28T09:15:00Z". */
+  sentAt: string;
+  isRead: boolean;
+  isArchived: boolean;
+}
