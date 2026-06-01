@@ -1,26 +1,183 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand / primarne */
+  --color-primary: #004AC6;
+  --color-primary-strong: #2563EB;
+  --color-on-primary: #FFFFFF;
+  --color-primary-subtle: #DBE1FF;
+
+  /* Plohe */
+  --color-bg: #F9F9FF;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F0F3FF;
+  --color-surface-3: #E7EEFF;
+  --color-border: #C3C6D7;
+  --color-outline: #737686;
+
+  /* Tekst */
+  --color-text: #111C2D;
+  --color-text-muted: #434655;
+  --color-text-inverse: #FFFFFF;
+
+  /* Funkcionalna stanja */
+  --color-success: #065F46;
+  --color-success-icon: #10B981;
+  --color-success-bg: #D1FAE5;
+  --color-warning: #92400E;
+  --color-warning-icon: #F59E0B;
+  --color-warning-bg: #FEF3C7;
+  --color-error: #BA1A1A;
+  --color-error-bg: #FFDAD6;
+  --color-info: #004AC6;
+  --color-info-bg: #DBE1FF;
+
+  /* Spacing */
+  --space-sm: 8px;
+  --space-md: 16px;
+  --gutter: 24px;
+  --space-lg: 32px;
+  --margin-mobile: 16px;
+  --margin-desktop: 48px;
+  --container-max: 1280px;
+
+  /* Radius */
+  --radius-md: 8px;
+  --radius-card: 18px;
+  --radius-pill: 9999px;
+
+  /* Sjene */
+  --shadow-sm: 0 1px 3px rgba(17, 28, 45, 0.06);
+  --shadow-md: 0 4px 12px rgba(17, 28, 45, 0.08);
+
+  /* Layout */
+  --sidebar-width: 256px;
+  --header-height: 72px;
+
+  /* Fontovi (next/font postavlja --font-inter / --font-playfair na <html>) */
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--color-primary);
+  --color-primary-strong: var(--color-primary-strong);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-egtext: var(--color-text);
+  --color-egtext-muted: var(--color-text-muted);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+}
+
+/* Skip link za pristupačnost */
+.eg-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--color-primary-strong);
+  color: var(--color-on-primary);
+  border-radius: 0 0 var(--radius-md) 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.eg-skip-link:focus {
+  left: 0;
+}
+
+/* Fokus prsten — vidljiv kontrast (državni sustav) */
+.eg-focusable:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary-strong);
+  outline-offset: 2px;
+}
+
+/* Responsive show/hide.
+   Mobile-first: desktop-only skriveno, mobile-only prikazano. */
+.eg-desktop-only { display: none; }
+.eg-mobile-only { display: flex; }
+
+@media (min-width: 768px) {
+  .eg-desktop-only { display: flex; }
+  .eg-mobile-only { display: none; }
+}
+
+/* Glavni sadržaj: centriran kontejner; donji razmak za fiksnu mobilnu navigaciju */
+.eg-main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-md);
+  padding-bottom: 96px;
+}
+@media (min-width: 768px) {
+  .eg-main {
+    padding: var(--space-lg);
+    padding-bottom: var(--space-lg);
+  }
+}
+
+/* Stat kartice: horizontalni scroll na mobitelu, grid na desktopu */
+.eg-stats {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.eg-stats::-webkit-scrollbar { display: none; }
+.eg-stats > * { scroll-snap-align: center; }
+
+@media (min-width: 768px) {
+  .eg-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+    padding-bottom: 0;
+  }
+}
+
+/* Hover/aktivni helperi (inline stilovi ne podržavaju :hover) */
+.eg-row-hover { transition: background 0.15s; }
+.eg-row-hover:hover { background: var(--color-surface-2); }
+
+.eg-icon-btn { transition: background 0.15s, color 0.15s; }
+.eg-icon-btn:hover { background: var(--color-surface-2); }
+
+.eg-btn-primary { transition: opacity 0.15s; }
+.eg-btn-primary:hover { opacity: 0.9; }
+
+.eg-nav-link { transition: background 0.15s, color 0.15s; }
+.eg-nav-link:hover:not([aria-current="page"]) { background: var(--color-surface-2); }
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
