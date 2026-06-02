@@ -4,9 +4,24 @@ const USER = { name: "Marko Horvat", initials: "MH" };
 
 interface TopAppBarProps {
   greeting: string;
+  /** Broj novih obavijesti — točkica + dinamičan aria-label. */
+  notificationCount?: number;
 }
 
-export function TopAppBar({ greeting }: TopAppBarProps) {
+/** Hrvatska sklonidba: 1 nova, 2–4 nove, ostalo novih (uz iznimke 11–14). */
+function obavijestiLabel(count: number): string {
+  if (count <= 0) return "Obavijesti";
+  const d = count % 10;
+  const dd = count % 100;
+  let noun = "novih";
+  if (d === 1 && dd !== 11) noun = "nova";
+  else if (d >= 2 && d <= 4 && !(dd >= 12 && dd <= 14)) noun = "nove";
+  return `Obavijesti (${count} ${noun})`;
+}
+
+export function TopAppBar({ greeting, notificationCount = 0 }: TopAppBarProps) {
+  const hasNotifications = notificationCount > 0;
+
   return (
     <header
       style={{
@@ -73,14 +88,15 @@ export function TopAppBar({ greeting }: TopAppBarProps) {
 
       <button
         type="button"
-        aria-label="Obavijesti (1 nova)"
+        aria-label={obavijestiLabel(notificationCount)}
         className="eg-icon-btn"
         style={{
           position: "relative",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "8px",
+          minWidth: "44px",
+          minHeight: "44px",
           color: "var(--color-text-muted)",
           background: "transparent",
           border: "none",
@@ -90,19 +106,21 @@ export function TopAppBar({ greeting }: TopAppBarProps) {
         }}
       >
         <Icon name="bell" size={22} />
-        <span
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: "8px",
-            right: "8px",
-            width: "8px",
-            height: "8px",
-            borderRadius: "var(--radius-pill)",
-            background: "var(--color-error)",
-            border: "1.5px solid var(--color-surface)",
-          }}
-        />
+        {hasNotifications && (
+          <span
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              width: "8px",
+              height: "8px",
+              borderRadius: "var(--radius-pill)",
+              background: "var(--color-error)",
+              border: "1.5px solid var(--color-surface)",
+            }}
+          />
+        )}
       </button>
     </header>
   );
