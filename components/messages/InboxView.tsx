@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { MessageListItem } from "@/components/messages/MessageListItem";
 import { MessageDetail } from "@/components/messages/MessageDetail";
 import { InboxEmptyState } from "@/components/messages/InboxEmptyState";
@@ -14,7 +13,6 @@ interface InboxViewProps {
 }
 
 export function InboxView({ messages }: InboxViewProps) {
-  const router = useRouter();
   const [isDesktop, setIsDesktop] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -38,12 +36,14 @@ export function InboxView({ messages }: InboxViewProps) {
     return <InboxEmptyState />;
   }
 
-  function handleSelect(message: Message) {
-    if (isDesktop) {
+  function handleSelect(e: React.MouseEvent<HTMLAnchorElement>, message: Message) {
+    // Desktop split: presretni navigaciju i prikaži detalj u stupcu.
+    // Modifier klik (cmd/ctrl/shift/alt) pušta nativni <a> → otvori u novoj kartici.
+    if (isDesktop && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey) {
+      e.preventDefault();
       setSelectedId(message.id);
-    } else {
-      router.push(`/poruke/${message.id}`);
     }
+    // Mobilni: ne diramo — <a href="/poruke/[id]"> navigira nativno (radi i bez JS-a).
   }
 
   const selected = messages.find((m) => m.id === selectedId) ?? null;
@@ -69,7 +69,7 @@ export function InboxView({ messages }: InboxViewProps) {
             key={message.id}
             message={message}
             isActive={isDesktop && message.id === selectedId}
-            onClick={() => handleSelect(message)}
+            onSelect={(e) => handleSelect(e, message)}
           />
         ))}
       </ul>

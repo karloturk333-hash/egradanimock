@@ -45,6 +45,7 @@ export function CaseListItem({ item }: CaseListItemProps) {
             border: "none",
             borderRadius: "var(--radius-md)",
             padding: "8px 24px",
+            minHeight: "44px",
             fontSize: "16px",
             fontWeight: 500,
             cursor: "pointer",

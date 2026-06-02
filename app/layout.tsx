@@ -45,7 +45,7 @@ export default function RootLayout({
         <div style={{ display: "flex", minHeight: "100vh" }}>
           <Sidebar />
           <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
-            <TopAppBar greeting={greeting} />
+            <TopAppBar greeting={greeting} notificationCount={1} />
             <main id="main-content" tabIndex={-1} className="eg-main">
               {children}
             </main>
