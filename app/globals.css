@@ -178,6 +178,76 @@ button:focus-visible {
   border-bottom: 1px solid var(--color-border);
 }
 
+/* Vizualno skriveno, ali dostupno čitačima ekrana (npr. label pretrage) */
+.eg-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Katalog — grid kartica: 1 / 2 (≥768) / 3 (≥1024) stupca */
+.eg-katalog-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+@media (min-width: 768px) {
+  .eg-katalog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .eg-katalog-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Katalog — filter traka: omota se na uske ekrane, selecti zadržavaju širinu */
+.eg-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
+
+/* Polja forme (select, pretraga) — usklađen obrub/radius s ostatkom UI-ja */
+.eg-select {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+}
+.eg-select:hover { border-color: var(--color-outline); }
+
+/* Katalog kartica — hover: naglašen obrub + blaga sjena (inline stilovi nemaju :hover) */
+.eg-katalog-card {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.eg-katalog-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Footer — 4 / 2 / 1 stupac; mobilni padding-bottom jer je footer izvan .eg-main
+   (nema njegov clearance za fiksnu BottomNav) */
+.eg-footer-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+@media (min-width: 600px) {
+  .eg-footer-cols { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .eg-footer-cols { grid-template-columns: repeat(4, 1fr); }
+}
+
 @keyframes skeleton-shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }

@@ -9,13 +9,15 @@ interface EmptyStateProps {
   headingLevel?: 2 | 3;
   /** Veći vertikalni prostor (npr. cijeli inbox). Izostavi za kompaktne sekcije. */
   minHeight?: string;
+  /** Opcionalna akcija (npr. gumb „Poništi filtre”) ispod opisa. */
+  action?: React.ReactNode;
 }
 
 /**
  * Reusable prazno stanje (ikona + naslov + opis). Dijele ga predmeti, dokumenti i inbox.
  * Bez stanja/hookova → radi i u server i u client komponentama.
  */
-export function EmptyState({ icon: Icon, title, description, headingLevel = 3, minHeight }: EmptyStateProps) {
+export function EmptyState({ icon: Icon, title, description, headingLevel = 3, minHeight, action }: EmptyStateProps) {
   const Heading = `h${headingLevel}` as "h2" | "h3";
   return (
     <div
@@ -62,6 +64,8 @@ export function EmptyState({ icon: Icon, title, description, headingLevel = 3, m
           {description}
         </p>
       </div>
+
+      {action}
     </div>
   );
 }
