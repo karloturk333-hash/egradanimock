@@ -1,15 +1,26 @@
+import { FileText } from "lucide-react"
 import { fetchDocuments } from "@/lib/mock-data"
 import { DocListItem } from "@/components/dashboard/DocListItem"
+import { EmptyState } from "@/components/ui/EmptyState"
 import { Skeleton } from "@/components/ui/Skeleton"
 import { Card } from "@/components/ui/Card"
 
 export async function DocsSection() {
   const docs = await fetchDocuments()
+  if (docs.length === 0) {
+    return (
+      <EmptyState
+        icon={FileText}
+        title="Nemate dokumenata"
+        description="Vaše potvrde i dokumenti pojavit će se ovdje."
+      />
+    )
+  }
   return (
     <Card clip padding={0}>
-      <ul role="list" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-        {docs.map((doc, i) => (
-          <DocListItem key={doc.id} doc={doc} isLast={i === docs.length - 1} />
+      <ul className="eg-divided-list" role="list" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+        {docs.map(doc => (
+          <DocListItem key={doc.id} doc={doc} />
         ))}
       </ul>
     </Card>

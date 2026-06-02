@@ -173,6 +173,11 @@ button:focus-visible {
 .eg-nav-link { transition: background 0.15s, color 0.15s; }
 .eg-nav-link:hover:not([aria-current="page"]) { background: var(--color-surface-2); }
 
+/* Lista s razdjelnicima — granica između redaka (zamjena za DocListItem isLast prop) */
+.eg-divided-list > li:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
+}
+
 @keyframes skeleton-shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }

@@ -1,15 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { formatShortDate } from "@/lib/format";
 import type { Message } from "@/lib/types";
-
-const dateFormatter = new Intl.DateTimeFormat("hr-HR", {
-  day: "numeric",
-  month: "short",
-});
-
-function formatShortDate(iso: string): string {
-  return dateFormatter.format(new Date(iso));
-}
 
 interface MessageListItemProps {
   message: Message;

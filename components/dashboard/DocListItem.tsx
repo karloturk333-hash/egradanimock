@@ -3,11 +3,9 @@ import type { CitizenDocument } from "@/lib/types";
 
 interface DocListItemProps {
   doc: CitizenDocument;
-  /** Zadnji redak nema donji obrub. */
-  isLast?: boolean;
 }
 
-export function DocListItem({ doc, isLast = false }: DocListItemProps) {
+export function DocListItem({ doc }: DocListItemProps) {
   return (
     <li
       style={{
@@ -16,7 +14,6 @@ export function DocListItem({ doc, isLast = false }: DocListItemProps) {
         justifyContent: "space-between",
         gap: "12px",
         padding: "var(--space-md)",
-        borderBottom: isLast ? "none" : "1px solid var(--color-border)",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0 }}>

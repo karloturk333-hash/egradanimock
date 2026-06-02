@@ -1,0 +1,13 @@
+# Normaliziraj kraj retka na LF u repozitoriju.
+# Radna kopija na Windows/WSL (/mnt/c) zna biti CRLF — bez ovoga svaki commit
+# prikazuje cijele fileove kao izmijenjene (EOL šum). text=auto + eol=lf to rješava.
+* text=auto eol=lf
+
+# Binarni sadržaj — bez normalizacije.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary

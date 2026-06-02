@@ -27,6 +27,9 @@
 # production
 /build
 
+# local QA artefakti (Playwright/Docker screenshotovi)
+/screenshots/
+
 # misc
 .DS_Store
 *.pem
@@ -51,3 +54,4 @@ next-env.d.ts
 CLAUDE.md
 AGENTS.md
 DESIGN.md
+.claude/skills/
