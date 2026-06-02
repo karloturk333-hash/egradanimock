@@ -147,6 +147,9 @@ button:focus-visible {
   padding-bottom: 8px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  /* Scroll-affordance: desni rub blago izblijedi → signal da ima još kartica (mobitel). */
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
 }
 .eg-stats::-webkit-scrollbar { display: none; }
 .eg-stats > * { scroll-snap-align: center; }
@@ -157,6 +160,9 @@ button:focus-visible {
     grid-template-columns: repeat(3, 1fr);
     overflow: visible;
     padding-bottom: 0;
+    /* Grid prikaz — sve tri kartice vidljive, bez fade-a. */
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 

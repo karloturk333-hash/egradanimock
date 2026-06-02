@@ -56,7 +56,9 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",
+        // maxHeight (ne fiksni height) → kratka poruka steže karticu i footer huga sadržaj;
+        // duga poruka puni visinu stupca i tijelo se skrola.
+        maxHeight: "100%",
         minHeight: 0,
         background: "var(--color-surface)",
         border: "1px solid var(--color-border)",

@@ -36,8 +36,8 @@ test.describe("Korisnički pretinac (/poruke)", () => {
     await expect(detail.getByRole("heading", { level: 2, name: SECOND_SUBJECT })).toBeVisible();
   });
 
-  test("klik na poruku na mobilnom navigira na /poruke/[id]", async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== "mobile", "samo mobilni list-only prikaz");
+  test("klik na poruku (list-only: mobilni/tablet) navigira na /poruke/[id]", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === "desktop", "list-only prikaz — mobilni i tablet (<1024px split)");
     await page.goto("/poruke");
     // List item je pravi <a href="/poruke/[id]"> (P2.3) → navigira nativno, i prije hydration-a.
     await page.getByRole("link", { name: FIRST_SUBJECT_RE }).click();
