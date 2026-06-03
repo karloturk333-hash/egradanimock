@@ -264,3 +264,27 @@ button:focus-visible {
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Print izolacija — skrivena print-kartica za pojedini dokument.
+   Pri ispisu sakrij cijelu aplikaciju i prikaži samo .eg-print-card,
+   tako da se jedan dokument ispiše čisto dok živa stranica ostaje skrivena. */
+.eg-print-card {
+  display: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .eg-print-card,
+  .eg-print-card * {
+    visibility: visible;
+  }
+  .eg-print-card {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}

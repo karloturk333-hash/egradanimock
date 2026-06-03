@@ -10,6 +10,8 @@ import {
   User,
   ChevronRight,
   Mail,
+  Printer,
+  Archive,
   type LucideIcon,
 } from "lucide-react"
 
@@ -25,6 +27,8 @@ export type IconName =
   | "user"
   | "chevron-right"
   | "mail"
+  | "printer"
+  | "archive"
 
 const ICONS: Record<IconName, LucideIcon> = {
   "check-circle": CheckCircle,
@@ -38,6 +42,8 @@ const ICONS: Record<IconName, LucideIcon> = {
   user: User,
   "chevron-right": ChevronRight,
   mail: Mail,
+  printer: Printer,
+  archive: Archive,
 }
 
 interface IconProps {
