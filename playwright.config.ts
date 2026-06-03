@@ -47,14 +47,14 @@ export default defineConfig({
     },
     {
       command:
-        "MOCK_DELAY=1500 EG_EMPTY_INBOX=1 EG_EMPTY_DASHBOARD=1 EG_EMPTY_KATALOG=1 NEXT_DIST_DIR=.next-e2e-empty npx next dev --webpack -p 3211",
+        "MOCK_DELAY=1500 EG_EMPTY_INBOX=1 EG_EMPTY_DASHBOARD=1 EG_EMPTY_KATALOG=1 EG_EMPTY_DOKUMENTI=1 NEXT_DIST_DIR=.next-e2e-empty npx next dev --webpack -p 3211",
       url: `${EMPTY_URL}/poruke`,
       timeout: 120_000,
       reuseExistingServer: !process.env.CI,
     },
     {
       command:
-        "MOCK_DELAY=0 EG_DASHBOARD_ERROR=1 EG_KATALOG_ERROR=1 NEXT_DIST_DIR=.next-e2e-error npx next dev --webpack -p 3212",
+        "MOCK_DELAY=0 EG_DASHBOARD_ERROR=1 EG_KATALOG_ERROR=1 EG_DOKUMENTI_ERROR=1 NEXT_DIST_DIR=.next-e2e-error npx next dev --webpack -p 3212",
       url: `${ERROR_URL}/poruke`,
       timeout: 120_000,
       reuseExistingServer: !process.env.CI,
