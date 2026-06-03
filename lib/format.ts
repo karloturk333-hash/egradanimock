@@ -18,3 +18,14 @@ export function formatShortDate(iso: string): string {
     month: "short",
   });
 }
+
+/** Puni datum i vrijeme — npr. "28. svibnja 2026. u 09:15" (detalj poruke). */
+export function formatDateTime(iso: string): string {
+  return new Date(iso).toLocaleString(LOCALE, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}

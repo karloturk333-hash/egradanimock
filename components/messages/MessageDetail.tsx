@@ -1,17 +1,6 @@
 import { ArrowLeft, Reply, Archive, Trash2 } from "lucide-react";
+import { formatDateTime } from "@/lib/format";
 import type { Message } from "@/lib/types";
-
-const dateFormatter = new Intl.DateTimeFormat("hr-HR", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-});
-
-function formatFullDate(iso: string): string {
-  return dateFormatter.format(new Date(iso));
-}
 
 function initials(name: string): string {
   const letters = name.replace(/[^\p{L}\s].*$/u, "").trim();
@@ -33,8 +22,10 @@ function DetailAction({ icon, label, primary = false }: DetailActionProps) {
       style={{
         display: "inline-flex",
         alignItems: "center",
+        justifyContent: "center",
         gap: "8px",
         padding: "8px 16px",
+        minHeight: "44px",
         fontSize: "14px",
         fontWeight: 600,
         cursor: "pointer",
@@ -65,7 +56,9 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
       style={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",
+        // maxHeight (ne fiksni height) → kratka poruka steže karticu i footer huga sadržaj;
+        // duga poruka puni visinu stupca i tijelo se skrola.
+        maxHeight: "100%",
         minHeight: 0,
         background: "var(--color-surface)",
         border: "1px solid var(--color-border)",
@@ -93,8 +86,8 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "8px",
-              marginTop: "2px",
+              minWidth: "44px",
+              minHeight: "44px",
               color: "var(--color-text-muted)",
               background: "transparent",
               border: "none",
@@ -144,7 +137,7 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
             {senderName}
           </p>
           <p style={{ margin: "2px 0 0 0", fontSize: "13px", color: "var(--color-text-muted)" }}>
-            {formatFullDate(sentAt)}
+            {formatDateTime(sentAt)}
           </p>
         </div>
       </header>

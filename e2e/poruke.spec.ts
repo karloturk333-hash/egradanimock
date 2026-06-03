@@ -26,25 +26,23 @@ test.describe("Korisnički pretinac (/poruke)", () => {
   test("klik na poruku na desktopu prikazuje detalj u desnom stupcu", async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== "desktop", "samo desktop split prikaz");
     await page.goto("/poruke");
-    // Na desktopu se prva poruka auto-odabere TEK nakon hydration-a (client effect), pa čekanje na
-    // bilo koji article dokazuje da je app interaktivan. Tek tada klik pouzdano mijenja detalj.
-    // (<li role=button> ima JS-only handler; pravi fix je P2.3 — nativni link.)
+    // Na desktopu se prva poruka auto-odabere TEK nakon hydration-a (client effect); čekanje na
+    // bilo koji article dokazuje interaktivnost. Tek tada se klik na link presreće (preventDefault)
+    // i mijenja detalj u stupcu umjesto navigacije. List item je sada pravi <a href> (P2.3).
     await expect(page.getByRole("article").first()).toBeVisible();
-    await page.getByRole("button", { name: new RegExp(SECOND_SUBJECT) }).click();
+    await page.getByRole("link", { name: new RegExp(SECOND_SUBJECT) }).click();
     const detail = page.getByRole("article", { name: new RegExp(SECOND_SUBJECT) });
     await expect(detail).toBeVisible();
     await expect(detail.getByRole("heading", { level: 2, name: SECOND_SUBJECT })).toBeVisible();
   });
 
-  test("klik na poruku na mobilnom navigira na /poruke/[id]", async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== "mobile", "samo mobilni list-only prikaz");
+  test("klik na poruku (list-only: mobilni/tablet) navigira na /poruke/[id]", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name === "desktop", "list-only prikaz — mobilni i tablet (<1024px split)");
     await page.goto("/poruke");
-    const item = page.getByRole("button", { name: FIRST_SUBJECT_RE });
-    // Vidi desktop test: klik može prethoditi hydration-u; ponavljaj dok navigacija ne krene. Pravi fix: P2.3.
-    await expect(async () => {
-      await item.click();
-      await expect(page).toHaveURL(/\/poruke\/msg-1001$/, { timeout: 1000 });
-    }).toPass({ timeout: 10_000 });
+    // List item je pravi <a href="/poruke/[id]"> (P2.3) → navigira nativno, i prije hydration-a.
+    await page.getByRole("link", { name: FIRST_SUBJECT_RE }).click();
+    // Timeout s zalihom: prva navigacija na /poruke/[id] u dev modu kompajlira rutu (sporo na svježem distu).
+    await expect(page).toHaveURL(/\/poruke\/msg-1001$/, { timeout: 15_000 });
     await expect(page.getByRole("link", { name: "Natrag na pretinac" })).toBeVisible();
   });
 
