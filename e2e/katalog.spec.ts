@@ -38,8 +38,8 @@ test.describe("Katalog usluga (/katalog)", () => {
     await expect(
       page.getByRole("heading", { name: "Nema usluga za odabrane filtre" }),
     ).toBeVisible();
-    // Reset gumb unutar praznog stanja vraća sve kartice.
-    await page.getByRole("button", { name: "Poništi filtre" }).click();
+    // CTA unutar praznog stanja ("Prikaži sve usluge") vraća sve kartice.
+    await page.getByRole("button", { name: "Prikaži sve usluge" }).click();
     await expect(page.getByRole("heading", { name: "Zdravlje", level: 3 })).toBeVisible();
     await expect(page.getByText("Pronađeno 8 usluga")).toBeVisible();
   });

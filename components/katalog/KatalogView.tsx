@@ -103,7 +103,7 @@ export function KatalogView({ categories }: KatalogViewProps) {
                 cursor: "pointer",
               }}
             >
-              Poništi filtre
+              Prikaži sve usluge
             </button>
           }
         />
