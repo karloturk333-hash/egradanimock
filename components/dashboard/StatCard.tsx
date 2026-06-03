@@ -23,7 +23,7 @@ interface StatCardProps {
 
 export function StatCard({ label, sublabel, icon, iconColor, state }: StatCardProps) {
   return (
-    <Card style={{ minWidth: "150px", flexShrink: 0 }}>
+    <Card>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <span style={{ color: ICON_COLOR[iconColor], display: "inline-flex" }}>

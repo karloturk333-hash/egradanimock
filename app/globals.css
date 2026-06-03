@@ -140,31 +140,23 @@ button:focus-visible {
   }
 }
 
-/* Stat kartice: horizontalni scroll na mobitelu, grid na desktopu */
+/* Stat kartice — mobitel: 2 stupca, treća ("Čeka plaćanje") preko cijele
+   širine (bez horizontalnog scrolla); desktop: tri stupca u retku. */
 .eg-stats {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-sm);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 8px;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  /* Scroll-affordance: desni rub blago izblijedi → signal da ima još kartica (mobitel). */
-  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
-  mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
 }
-.eg-stats::-webkit-scrollbar { display: none; }
-.eg-stats > * { scroll-snap-align: center; }
+.eg-stats > *:nth-child(3) {
+  grid-column: 1 / -1;
+}
 
 @media (min-width: 768px) {
   .eg-stats {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    overflow: visible;
-    padding-bottom: 0;
-    /* Grid prikaz — sve tri kartice vidljive, bez fade-a. */
-    -webkit-mask-image: none;
-    mask-image: none;
+  }
+  .eg-stats > *:nth-child(3) {
+    grid-column: auto;
   }
 }
 
