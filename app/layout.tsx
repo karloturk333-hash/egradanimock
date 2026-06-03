@@ -5,6 +5,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { TopAppBar } from "@/components/layout/TopAppBar";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { UNREAD_COUNT } from "@/lib/mock-messages";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -46,7 +47,7 @@ export default function RootLayout({
         <div style={{ display: "flex", minHeight: "100vh" }}>
           <Sidebar />
           <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
-            <TopAppBar greeting={greeting} />
+            <TopAppBar greeting={greeting} notificationCount={UNREAD_COUNT} />
             <main id="main-content" tabIndex={-1} className="eg-main">
               {children}
             </main>
