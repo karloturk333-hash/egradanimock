@@ -1,18 +1,11 @@
 import { Badge, type BadgeTone } from "@/components/ui/Badge";
+import { formatDate } from "@/lib/format";
 import type { CitizenCase, CaseStatus } from "@/lib/types";
 
 const STATUS_LABEL: Record<Exclude<CaseStatus, "awaiting-payment">, { tone: BadgeTone; label: string }> = {
   resolved: { tone: "success", label: "Riješeno" },
   "in-progress": { tone: "warning", label: "U obradi" },
 };
-
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("hr-HR", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
-}
 
 interface CaseListItemProps {
   item: CitizenCase;

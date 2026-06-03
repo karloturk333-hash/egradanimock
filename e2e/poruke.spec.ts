@@ -26,9 +26,11 @@ test.describe("Korisnički pretinac (/poruke)", () => {
   test("klik na poruku na desktopu prikazuje detalj u desnom stupcu", async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== "desktop", "samo desktop split prikaz");
     await page.goto("/poruke");
-    // Klik na drugu poruku (Porezna) — list item ima role=button.
+    // Na desktopu se prva poruka auto-odabere TEK nakon hydration-a (client effect), pa čekanje na
+    // bilo koji article dokazuje da je app interaktivan. Tek tada klik pouzdano mijenja detalj.
+    // (<li role=button> ima JS-only handler; pravi fix je P2.3 — nativni link.)
+    await expect(page.getByRole("article").first()).toBeVisible();
     await page.getByRole("button", { name: new RegExp(SECOND_SUBJECT) }).click();
-    // Detalj (article) prikazuje naslov kao h2.
     const detail = page.getByRole("article", { name: new RegExp(SECOND_SUBJECT) });
     await expect(detail).toBeVisible();
     await expect(detail.getByRole("heading", { level: 2, name: SECOND_SUBJECT })).toBeVisible();
@@ -37,8 +39,12 @@ test.describe("Korisnički pretinac (/poruke)", () => {
   test("klik na poruku na mobilnom navigira na /poruke/[id]", async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== "mobile", "samo mobilni list-only prikaz");
     await page.goto("/poruke");
-    await page.getByRole("button", { name: FIRST_SUBJECT_RE }).click();
-    await expect(page).toHaveURL(/\/poruke\/msg-1001$/);
+    const item = page.getByRole("button", { name: FIRST_SUBJECT_RE });
+    // Vidi desktop test: klik može prethoditi hydration-u; ponavljaj dok navigacija ne krene. Pravi fix: P2.3.
+    await expect(async () => {
+      await item.click();
+      await expect(page).toHaveURL(/\/poruke\/msg-1001$/, { timeout: 1000 });
+    }).toPass({ timeout: 10_000 });
     await expect(page.getByRole("link", { name: "Natrag na pretinac" })).toBeVisible();
   });
 

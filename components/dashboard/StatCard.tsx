@@ -3,23 +3,30 @@ import { Skeleton } from "@/components/ui/Skeleton";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import type { AsyncState } from "@/lib/types";
 
+/** Funkcionalni status kartice — interno se mapira na token boje ikone. */
+export type StatColor = "success" | "warning" | "error";
+
+const ICON_COLOR: Record<StatColor, string> = {
+  success: "var(--color-success-icon)",
+  warning: "var(--color-warning-icon)",
+  error: "var(--color-error)",
+};
+
 interface StatCardProps {
   label: string;
   sublabel: string;
   icon: IconName;
-  /** Boja ikone prema funkcionalnom statusu. */
-  iconColor: string;
+  /** Funkcionalni status (ne sirova boja) — mapira se na token unutar komponente. */
+  iconColor: StatColor;
   state: AsyncState<number>;
 }
 
 export function StatCard({ label, sublabel, icon, iconColor, state }: StatCardProps) {
   return (
-    <Card
-      style={{ minWidth: "150px", flexShrink: 0 }}
-    >
+    <Card style={{ minWidth: "150px", flexShrink: 0 }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ color: iconColor, display: "inline-flex" }}>
+          <span style={{ color: ICON_COLOR[iconColor], display: "inline-flex" }}>
             <Icon name={icon} size={20} />
           </span>
           <span

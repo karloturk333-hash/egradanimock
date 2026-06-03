@@ -40,6 +40,32 @@ export type AsyncState<T> =
   | { status: "error"; message: string }
   | { status: "success"; data: T };
 
+/** Razina prijave (NIAS) potrebna za pristup uslugama kategorije. */
+export type SecurityLevel = "none" | "nias1" | "nias2";
+
+/**
+ * Životno područje u katalogu usluga (/katalog). `icon` je string ključ
+ * (ne komponenta) jer se kategorije serijaliziraju iz server u client komponentu;
+ * mapiranje u Lucide ikonu radi se u `components/katalog/category-icons.ts`.
+ */
+export interface ServiceCategory {
+  id: string;
+  /** URL slug, npr. "obitelj-i-zivot". */
+  slug: string;
+  title: string;
+  /** Kratki popis primjera usluga (jedan string, razdvojen znakom "·"). */
+  examples: string;
+  /** Ključ ikone iz category-icons.ts, npr. "users". */
+  icon: string;
+  /** Odredište kartice, npr. "/katalog/obitelj-i-zivot". */
+  href: string;
+  /** Životno područje za filtriranje (jednako title). */
+  area: string;
+  /** Ciljane skupine korisnika, npr. ["Građani", "Umirovljenici"]. */
+  audiences: string[];
+  security: SecurityLevel;
+}
+
 /** Poruka u korisničkom pretincu (inbox). */
 export interface Message {
   id: string;

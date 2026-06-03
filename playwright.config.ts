@@ -1,16 +1,18 @@
 import { defineConfig, devices } from "@playwright/test";
 
 /**
- * Dva dev servera (webpack — stabilno na WSL/DrvFs):
- *  - 3210: normalni pretinac (mock poruke)
- *  - 3211: prazni pretinac (EG_EMPTY_INBOX=1) za provjeru praznog stanja
- * Različiti NEXT_DIST_DIR da serveri ne dijele .next.
+ * Dev serveri (webpack — stabilno na WSL/DrvFs), svaki s vlastitim NEXT_DIST_DIR:
+ *  - 3210: normalni podaci (mock poruke + dashboard)
+ *  - 3211: prazno + sporo (EG_EMPTY_INBOX + EG_EMPTY_DASHBOARD + EG_EMPTY_KATALOG, MOCK_DELAY=1500)
+ *          → provjera empty stanja i vidljivog loading skeletona
+ *  - 3212: greška dohvata (EG_DASHBOARD_ERROR + EG_KATALOG_ERROR) → provjera error boundary + retry
  *
  * Napomena: inline env varijable (VAR=val) pretpostavljaju POSIX shell
  * (Linux/macOS/WSL). Na čistom Windowsu koristiti cross-env.
  */
 export const BASE_URL = "http://localhost:3210";
 export const EMPTY_URL = "http://localhost:3211";
+export const ERROR_URL = "http://localhost:3212";
 
 export default defineConfig({
   testDir: "./e2e",
@@ -40,8 +42,16 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: "MOCK_DELAY=0 EG_EMPTY_INBOX=1 NEXT_DIST_DIR=.next-e2e-empty npx next dev --webpack -p 3211",
+      command:
+        "MOCK_DELAY=1500 EG_EMPTY_INBOX=1 EG_EMPTY_DASHBOARD=1 EG_EMPTY_KATALOG=1 NEXT_DIST_DIR=.next-e2e-empty npx next dev --webpack -p 3211",
       url: `${EMPTY_URL}/poruke`,
+      timeout: 120_000,
+      reuseExistingServer: !process.env.CI,
+    },
+    {
+      command:
+        "MOCK_DELAY=0 EG_DASHBOARD_ERROR=1 EG_KATALOG_ERROR=1 NEXT_DIST_DIR=.next-e2e-error npx next dev --webpack -p 3212",
+      url: `${ERROR_URL}/poruke`,
       timeout: 120_000,
       reuseExistingServer: !process.env.CI,
     },

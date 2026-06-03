@@ -36,11 +36,13 @@ export function BottomNav() {
             aria-current={active ? "page" : undefined}
             aria-label={hasUnread ? `${label}, ${unreadCount} nepročitane` : undefined}
             style={{
+              flex: "1 1 0",
+              minWidth: 0,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               gap: "2px",
-              padding: "6px 16px",
+              padding: "6px 4px",
               borderRadius: "var(--radius-pill)",
               textDecoration: "none",
               color: active ? "var(--color-primary)" : "var(--color-text-muted)",
@@ -48,7 +50,17 @@ export function BottomNav() {
             }}
           >
             <NavIcon icon={icon} size={22} active={active} unreadCount={unreadCount} />
-            <span style={{ fontSize: "12px", fontWeight: active ? 600 : 500, letterSpacing: "0.02em" }}>
+            <span
+              style={{
+                maxWidth: "100%",
+                fontSize: "11px",
+                fontWeight: active ? 600 : 500,
+                letterSpacing: "0.01em",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
               {label}
             </span>
           </Link>

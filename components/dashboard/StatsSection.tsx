@@ -1,5 +1,5 @@
 import { fetchDashboardStats } from "@/lib/mock-data"
-import { StatCard } from "@/components/dashboard/StatCard"
+import { StatCard, type StatColor } from "@/components/dashboard/StatCard"
 import { Skeleton } from "@/components/ui/Skeleton"
 import { Card } from "@/components/ui/Card"
 import type { DashboardStats } from "@/lib/types"
@@ -10,11 +10,11 @@ const STAT_CARDS: Array<{
   label: string
   sublabel: string
   icon: IconName
-  iconColor: string
+  iconColor: StatColor
 }> = [
-  { key: "resolved", label: "Riješeno", sublabel: "Zadnjih 30 dana", icon: "check-circle", iconColor: "var(--color-success-icon)" },
-  { key: "inProgress", label: "U obradi", sublabel: "Aktivni predmeti", icon: "clock", iconColor: "var(--color-warning-icon)" },
-  { key: "awaitingPayment", label: "Čeka plaćanje", sublabel: "Rok za 2 dana", icon: "alert-triangle", iconColor: "var(--color-error)" },
+  { key: "resolved", label: "Riješeno", sublabel: "Zadnjih 30 dana", icon: "check-circle", iconColor: "success" },
+  { key: "inProgress", label: "U obradi", sublabel: "Aktivni predmeti", icon: "clock", iconColor: "warning" },
+  { key: "awaitingPayment", label: "Čeka plaćanje", sublabel: "Rok za 2 dana", icon: "alert-triangle", iconColor: "error" },
 ]
 
 export async function StatsSection() {

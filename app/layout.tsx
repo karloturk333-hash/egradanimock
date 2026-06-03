@@ -4,6 +4,7 @@ import "./globals.css";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { TopAppBar } from "@/components/layout/TopAppBar";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
@@ -49,6 +50,7 @@ export default function RootLayout({
             <main id="main-content" tabIndex={-1} className="eg-main">
               {children}
             </main>
+            <SiteFooter />
             <BottomNav />
           </div>
         </div>

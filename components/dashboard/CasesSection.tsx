@@ -1,10 +1,21 @@
+import { Folder } from "lucide-react"
 import { fetchCases } from "@/lib/mock-data"
 import { CaseListItem } from "@/components/dashboard/CaseListItem"
+import { EmptyState } from "@/components/ui/EmptyState"
 import { Skeleton } from "@/components/ui/Skeleton"
 import { Card } from "@/components/ui/Card"
 
 export async function CasesSection() {
   const cases = await fetchCases()
+  if (cases.length === 0) {
+    return (
+      <EmptyState
+        icon={Folder}
+        title="Nemate aktivnih predmeta"
+        description="Kad podnesete zahtjev ili predmet, pojavit će se ovdje."
+      />
+    )
+  }
   return (
     <ul
       role="list"
