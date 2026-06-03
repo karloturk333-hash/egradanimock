@@ -39,7 +39,7 @@ export function StatsSkeleton() {
   return (
     <div className="eg-stats" aria-busy="true" aria-label="Učitavanje statistike">
       {[1, 2, 3].map(i => (
-        <Card key={i} style={{ minWidth: "150px", flexShrink: 0 }}>
+        <Card key={i}>
           <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
             <Skeleton height="20px" width="100px" />
             <Skeleton height="32px" width="48px" />
