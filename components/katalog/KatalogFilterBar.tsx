@@ -1,3 +1,5 @@
+"use client";
+
 import { useId } from "react";
 import { RotateCcw } from "lucide-react";
 import { AREAS, AUDIENCES, SECURITY_LEVELS } from "@/lib/mock-katalog";

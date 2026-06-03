@@ -83,7 +83,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+/* Serif (display) samo na h1/h2. h3 ostaje sans — komponente (KatalogCard,
+   DocListItem, CaseListItem) ionako koriste h3 kao sans i ručni override više nije potreban. */
+h1, h2 {
   font-family: var(--font-display);
 }
 
