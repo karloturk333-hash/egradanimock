@@ -11,6 +11,8 @@ export interface CitizenDocument {
   fileType: string;
   /** Veličina datoteke, npr. "1.2 MB". */
   fileSize: string;
+  /** URL slug za detalj/pregled, npr. "domovnica". Opcionalno (dashboard ne koristi). */
+  slug?: string;
   /** ISO 8601 datum izdavanja, npr. "2025-03-14". Opcionalno (dashboard ne koristi). */
   issuedAt?: string;
   /** Kategorija dokumenta, npr. "Osobni dokumenti". Opcionalno (dashboard ne koristi). */

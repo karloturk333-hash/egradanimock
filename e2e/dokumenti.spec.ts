@@ -114,4 +114,29 @@ test.describe("Moji dokumenti (/dokumenti)", () => {
     expect(printBox!.width).toBeGreaterThanOrEqual(44);
     expect(printBox!.height).toBeGreaterThanOrEqual(44);
   });
+
+  test("klik na dokument (ikona+naziv) otvara pregled /dokumenti/[slug]", async ({ page }) => {
+    await page.goto("/dokumenti");
+    const open = page.getByRole("link", { name: /^Otvori:/ }).first();
+    await expect(open).toHaveAttribute("href", /\/dokumenti\/[a-z0-9-]+$/);
+    await open.click();
+    await expect(page).toHaveURL(/\/dokumenti\/[a-z0-9-]+$/);
+    await expect(page.getByRole("heading", { level: 2 })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Natrag na dokumente" })).toBeVisible();
+    // Ugrađeni PDF pregled.
+    await expect(page.locator("iframe")).toBeVisible();
+  });
+
+  test("pregled ima 'Preuzmi PDF' poveznicu na pravi .pdf", async ({ page }) => {
+    await page.goto("/dokumenti/domovnica");
+    const dl = page.getByRole("link", { name: "Preuzmi PDF" });
+    await expect(dl).toBeVisible();
+    await expect(dl).toHaveAttribute("href", /\.pdf$/);
+    await expect(dl).toHaveAttribute("download", /.+/);
+  });
+
+  test("nevažeći slug (/dokumenti/ne-postoji) vraća 404", async ({ page }) => {
+    const res = await page.goto("/dokumenti/ne-postoji");
+    expect(res?.status()).toBe(404);
+  });
 });
