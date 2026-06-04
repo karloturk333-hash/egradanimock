@@ -73,14 +73,14 @@ Otvori `http://localhost:3000`.
 
 ### v0.2 — Korisnički pretinac (Poruke)
 
-- [ ] Ruta `/poruke` s listom poruka (primljene, nepročitane, arhivirane)
-- [ ] `MessageListItem` komponenta — pošiljatelj, naslov, datum, badge nepročitano
-- [ ] Detalj poruke — expand/collapse ili zasebna ruta `/poruke/[id]`
-- [ ] Paginacija ili infinite scroll za listu poruka
-- [ ] Prazno stanje (inbox zero ilustracija + poruka)
-- [ ] Loading skeleton i error stanje za svaki blok
-- [ ] Broj nepročitanih poruka u Sidebaru i BottomNav (badge na ikoni)
-- [ ] Playwright testovi: lista, detalj, mark-as-read, prazno stanje
+- [x] Ruta `/poruke` s listom poruka (primljene, nepročitane, arhivirane)
+- [x] `MessageListItem` komponenta — pošiljatelj, naslov, datum, badge nepročitano
+- [x] Detalj poruke — expand/collapse ili zasebna ruta `/poruke/[id]`
+- [x] Paginacija ili infinite scroll za listu poruka
+- [x] Prazno stanje (inbox zero ilustracija + poruka)
+- [x] Loading skeleton i error stanje za svaki blok
+- [x] Broj nepročitanih poruka u Sidebaru i BottomNav (badge na ikoni)
+- [x] Playwright testovi: lista, detalj, mark-as-read, prazno stanje
 
 ### Refaktori (code review nalazi)
 
@@ -93,7 +93,7 @@ Otvori `http://localhost:3000`.
 
 ### Ostalo
 
-- [ ] Stranica Dokumenti
+- [x] Stranica Dokumenti
 - [ ] Stranica Zahtjevi (forma za novi zahtjev)
-- [ ] Stranica Profil
+- [X] Stranica Profil
 - [ ] Animacije prijelaza između stranica
