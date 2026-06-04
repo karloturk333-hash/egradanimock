@@ -93,3 +93,25 @@ export interface Message {
   isRead: boolean;
   isArchived: boolean;
 }
+
+/** Profil prijavljenog građanina (/profil). */
+export interface CitizenProfile {
+  id: string;
+  /** Puno ime, npr. "Marko Horvat". */
+  fullName: string;
+  /** Inicijali za avatar, npr. "MH". */
+  initials: string;
+  /** OIB (11 znamenki). */
+  oib: string;
+  /** ISO datum rođenja. */
+  dateOfBirth: string;
+  address: string;
+  email: string;
+  phone: string;
+  /** Razina NIAS vjerodajnice. */
+  niasLevel: "nias1" | "nias2";
+  /** ISO datum prve prijave. */
+  memberSince: string;
+  /** Postavke obavijesti (email / SMS). */
+  notifications: { email: boolean; sms: boolean };
+}

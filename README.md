@@ -8,16 +8,18 @@
 
 <table>
 <tr>
-<td><img src="demo/mobile-pocetna.png" width="190" alt="Početna"></td>
-<td><img src="demo/mobile-katalog.png" width="190" alt="Katalog"></td>
-<td><img src="demo/mobile-dokumenti.png" width="190" alt="Dokumenti"></td>
-<td><img src="demo/mobile-poruke.png" width="190" alt="Poruke"></td>
+<td><img src="demo/mobile-pocetna.png" width="155" alt="Početna"></td>
+<td><img src="demo/mobile-katalog.png" width="155" alt="Katalog"></td>
+<td><img src="demo/mobile-dokumenti.png" width="155" alt="Dokumenti"></td>
+<td><img src="demo/mobile-poruke.png" width="155" alt="Poruke"></td>
+<td><img src="demo/mobile-profil.png" width="155" alt="Profil"></td>
 </tr>
 <tr>
 <td align="center"><sub>Početna</sub></td>
 <td align="center"><sub>Katalog</sub></td>
 <td align="center"><sub>Dokumenti</sub></td>
 <td align="center"><sub>Poruke</sub></td>
+<td align="center"><sub>Profil</sub></td>
 </tr>
 </table>
 
@@ -27,6 +29,7 @@
 - **Katalog usluga** (`/katalog`) — pretraga + 3 filtera, responzivni grid kartica, detalj `/katalog/[slug]` (pravi **404** za nepoznat slug).
 - **Korisnički pretinac** (`/poruke`) — inbox, detalj poruke, **badge nepročitanih** u navigaciji, responzivni split na desktopu.
 - **Dokumenti** (`/dokumenti`) — **ARIA tablist** Aktivni / Arhiva, pretraga, po dokumentu **Preuzmi** + **Ispiši**, klik → pregled `/dokumenti/[slug]` s ugrađenim **pravim PDF-om**.
+- **Profil** (`/profil`) — osobni podaci, kontakt, status vjerodajnice (NIAS), te pristupačni **toggle switchevi** (`role="switch"`) za postavke obavijesti.
 
 ## ♿ Pristupačnost (glavni naglasak — državni portal)
 

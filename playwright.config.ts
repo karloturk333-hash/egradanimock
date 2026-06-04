@@ -54,7 +54,7 @@ export default defineConfig({
     },
     {
       command:
-        "MOCK_DELAY=0 EG_DASHBOARD_ERROR=1 EG_KATALOG_ERROR=1 EG_DOKUMENTI_ERROR=1 NEXT_DIST_DIR=.next-e2e-error npx next dev --webpack -p 3212",
+        "MOCK_DELAY=0 EG_DASHBOARD_ERROR=1 EG_KATALOG_ERROR=1 EG_DOKUMENTI_ERROR=1 EG_PROFIL_ERROR=1 NEXT_DIST_DIR=.next-e2e-error npx next dev --webpack -p 3212",
       url: `${ERROR_URL}/poruke`,
       timeout: 120_000,
       reuseExistingServer: !process.env.CI,
