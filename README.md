@@ -8,15 +8,21 @@
 
 <table>
 <tr>
-<td><img src="demo/mobile-pocetna.png" width="155" alt="Početna"></td>
-<td><img src="demo/mobile-katalog.png" width="155" alt="Katalog"></td>
-<td><img src="demo/mobile-dokumenti.png" width="155" alt="Dokumenti"></td>
-<td><img src="demo/mobile-poruke.png" width="155" alt="Poruke"></td>
-<td><img src="demo/mobile-profil.png" width="155" alt="Profil"></td>
+<td><img src="demo/mobile-pocetna.png" width="180" alt="Početna"></td>
+<td><img src="demo/mobile-katalog.png" width="180" alt="Katalog"></td>
+<td><img src="demo/mobile-predmeti.png" width="180" alt="Predmeti"></td>
 </tr>
 <tr>
 <td align="center"><sub>Početna</sub></td>
 <td align="center"><sub>Katalog</sub></td>
+<td align="center"><sub>Predmeti</sub></td>
+</tr>
+<tr>
+<td><img src="demo/mobile-dokumenti.png" width="180" alt="Dokumenti"></td>
+<td><img src="demo/mobile-poruke.png" width="180" alt="Poruke"></td>
+<td><img src="demo/mobile-profil.png" width="180" alt="Profil"></td>
+</tr>
+<tr>
 <td align="center"><sub>Dokumenti</sub></td>
 <td align="center"><sub>Poruke</sub></td>
 <td align="center"><sub>Profil</sub></td>
@@ -27,6 +33,7 @@
 
 - **Dashboard** (`/`) — statusne kartice (Riješeno / U obradi / Čeka plaćanje), predmeti, dokumenti. Mobitel: **2-stupčani grid** (bez horizontalnog scrolla); desktop: sidebar.
 - **Katalog usluga** (`/katalog`) — pretraga + 3 filtera, responzivni grid kartica, detalj `/katalog/[slug]` (pravi **404** za nepoznat slug).
+- **Predmeti** (`/predmeti`) — popis svih predmeta građanina, **pretraga** + **filter po statusu** (U obradi / Čeka plaćanje / Riješeno).
 - **Korisnički pretinac** (`/poruke`) — inbox, detalj poruke, **badge nepročitanih** u navigaciji, responzivni split na desktopu.
 - **Dokumenti** (`/dokumenti`) — **ARIA tablist** Aktivni / Arhiva, pretraga, po dokumentu **Preuzmi** + **Ispiši**, klik → pregled `/dokumenti/[slug]` s ugrađenim **pravim PDF-om**.
 - **Profil** (`/profil`) — osobni podaci, kontakt, status vjerodajnice (NIAS), te pristupačni **toggle switchevi** (`role="switch"`) za postavke obavijesti.
