@@ -29,10 +29,11 @@
   --color-warning-bg: #FEF3C7;
   --color-error: #BA1A1A;
   --color-error-bg: #FFDAD6;
-  --color-info: #004AC6;
-  --color-info-bg: #DBE1FF;
+  --color-info: var(--color-primary);
+  --color-info-bg: var(--color-primary-subtle);
 
   /* Spacing */
+  --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --gutter: 24px;
@@ -57,18 +58,15 @@
   /* Fontovi (next/font postavlja --font-inter / --font-playfair na <html>) */
   --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
 
-@theme inline {
-  --color-primary: var(--color-primary);
-  --color-primary-strong: var(--color-primary-strong);
-  --color-bg: var(--color-bg);
-  --color-surface: var(--color-surface);
-  --color-border: var(--color-border);
-  --color-egtext: var(--color-text);
-  --color-egtext-muted: var(--color-text-muted);
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  /* Tipografska skala (konsolidirano: 11/13→12, 15→16) */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 22px;
+  --text-2xl: 24px;
+  --text-3xl: 32px;
 }
 
 * {

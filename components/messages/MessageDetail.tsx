@@ -23,10 +23,10 @@ function DetailAction({ icon, label, primary = false }: DetailActionProps) {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: "8px",
+        gap: "var(--space-sm)",
         padding: "8px 16px",
         minHeight: "44px",
-        fontSize: "14px",
+        fontSize: "var(--text-sm)",
         fontWeight: 600,
         cursor: "pointer",
         borderRadius: "var(--radius-md)",
@@ -111,7 +111,7 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: "15px",
+            fontSize: "var(--text-base)",
             fontWeight: 700,
             letterSpacing: "0.03em",
             flexShrink: 0,
@@ -125,7 +125,7 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
             style={{
               margin: 0,
               fontFamily: "var(--font-display)",
-              fontSize: "22px",
+              fontSize: "var(--text-xl)",
               fontWeight: 600,
               lineHeight: 1.3,
               color: "var(--color-text)",
@@ -133,10 +133,10 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
           >
             {subject}
           </h2>
-          <p style={{ margin: "6px 0 0 0", fontSize: "14px", fontWeight: 600, color: "var(--color-text)" }}>
+          <p style={{ margin: "6px 0 0 0", fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-text)" }}>
             {senderName}
           </p>
-          <p style={{ margin: "2px 0 0 0", fontSize: "13px", color: "var(--color-text-muted)" }}>
+          <p style={{ margin: "2px 0 0 0", fontSize: "var(--text-xs)", color: "var(--color-text-muted)" }}>
             {formatDateTime(sentAt)}
           </p>
         </div>
@@ -154,7 +154,7 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
         <p
           style={{
             margin: 0,
-            fontSize: "16px",
+            fontSize: "var(--text-base)",
             lineHeight: 1.6,
             color: "var(--color-text)",
             whiteSpace: "pre-line",
@@ -169,7 +169,7 @@ export function MessageDetail({ message, onClose }: MessageDetailProps) {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "8px",
+          gap: "var(--space-sm)",
           padding: "var(--space-md)",
           borderTop: "1px solid var(--color-border)",
         }}

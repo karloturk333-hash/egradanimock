@@ -53,7 +53,7 @@ export function BottomNav() {
             <span
               style={{
                 maxWidth: "100%",
-                fontSize: "11px",
+                fontSize: "var(--text-xs)",
                 fontWeight: active ? 600 : 500,
                 letterSpacing: "0.01em",
                 overflow: "hidden",

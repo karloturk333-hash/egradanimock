@@ -27,10 +27,10 @@ export function CaseListItem({ item }: CaseListItemProps) {
       }}
     >
       <div style={{ minWidth: 0 }}>
-        <h3 style={{ margin: 0, fontFamily: "var(--font-sans)", fontSize: "16px", fontWeight: 600, color: "var(--color-text)" }}>
+        <h3 style={{ margin: 0, fontFamily: "var(--font-sans)", fontSize: "var(--text-base)", fontWeight: 600, color: "var(--color-text)" }}>
           {item.title}
         </h3>
-        <p style={{ margin: "2px 0 0 0", fontSize: "14px", color: "var(--color-text-muted)" }}>
+        <p style={{ margin: "2px 0 0 0", fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
           REF: {item.ref} • {formatDate(item.date)}
         </p>
       </div>
@@ -46,7 +46,7 @@ export function CaseListItem({ item }: CaseListItemProps) {
             borderRadius: "var(--radius-md)",
             padding: "8px 24px",
             minHeight: "44px",
-            fontSize: "16px",
+            fontSize: "var(--text-base)",
             fontWeight: 500,
             cursor: "pointer",
           }}

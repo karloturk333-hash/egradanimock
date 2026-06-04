@@ -226,7 +226,7 @@ export function DokumentiView({ documents }: DokumentiViewProps) {
 
       <p
         aria-live="polite"
-        style={{ margin: 0, fontSize: "14px", color: "var(--color-text-muted)" }}
+        style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}
       >
         {`Pronađeno ${current.length} ${dokumentWord(current.length)}`}
       </p>
@@ -260,7 +260,7 @@ export function DokumentiView({ documents }: DokumentiViewProps) {
           <h1 style={{ margin: "0 0 16px 0", fontFamily: "var(--font-display)" }}>
             {printDoc.name}
           </h1>
-          <dl style={{ margin: 0, fontSize: "14px", lineHeight: 1.8 }}>
+          <dl style={{ margin: 0, fontSize: "var(--text-sm)", lineHeight: 1.8 }}>
             <div>
               <dt style={{ display: "inline", fontWeight: 600 }}>Format: </dt>
               <dd style={{ display: "inline", margin: 0 }}>{printDoc.fileType}</dd>
@@ -306,7 +306,7 @@ const primaryBtnStyle: React.CSSProperties = {
   border: "none",
   borderRadius: "var(--radius-md)",
   padding: "10px 24px",
-  fontSize: "16px",
+  fontSize: "var(--text-base)",
   fontWeight: 600,
   cursor: "pointer",
 };
@@ -318,7 +318,7 @@ function tabStyle(selected: boolean): React.CSSProperties {
     gap: "6px",
     minHeight: "44px",
     padding: "0 16px",
-    fontSize: "16px",
+    fontSize: "var(--text-base)",
     fontWeight: 600,
     color: selected ? "var(--color-primary)" : "var(--color-text-muted)",
     background: "transparent",

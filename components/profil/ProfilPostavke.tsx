@@ -23,11 +23,11 @@ function Toggle({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: "16px",
+        gap: "var(--space-md)",
         padding: "8px 0",
       }}
     >
-      <span id={labelId} style={{ fontSize: "15px", color: "var(--color-text)" }}>
+      <span id={labelId} style={{ fontSize: "var(--text-base)", color: "var(--color-text)" }}>
         {label}
       </span>
       <button

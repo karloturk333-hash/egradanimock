@@ -77,7 +77,7 @@ export function KatalogView({ categories }: KatalogViewProps) {
 
       <KatalogFilterBar filters={filters} onChange={setFilters} onReset={resetFilters} />
 
-      <p aria-live="polite" style={{ margin: 0, fontSize: "14px", color: "var(--color-text-muted)" }}>
+      <p aria-live="polite" style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
         {`Pronađeno ${filtered.length} ${uslugaWord(filtered.length)}`}
       </p>
 
@@ -98,7 +98,7 @@ export function KatalogView({ categories }: KatalogViewProps) {
                 border: "none",
                 borderRadius: "var(--radius-md)",
                 padding: "10px 24px",
-                fontSize: "16px",
+                fontSize: "var(--text-base)",
                 fontWeight: 600,
                 cursor: "pointer",
               }}

@@ -26,8 +26,8 @@ interface SelectFieldProps {
 function SelectField({ label, value, onChange, options }: SelectFieldProps) {
   const id = useId();
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: "1 1 180px" }}>
-      <label htmlFor={id} style={{ fontSize: "14px", fontWeight: 600, color: "var(--color-text)" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)", flex: "1 1 180px" }}>
+      <label htmlFor={id} style={{ fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-text)" }}>
         {label}
       </label>
       <select
@@ -35,7 +35,7 @@ function SelectField({ label, value, onChange, options }: SelectFieldProps) {
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="eg-focusable eg-select"
-        style={{ height: "48px", padding: "0 14px", fontSize: "16px", color: "var(--color-text)" }}
+        style={{ height: "48px", padding: "0 14px", fontSize: "var(--text-base)", color: "var(--color-text)" }}
       >
         {options.map((o) => (
           <option key={o.value || "all"} value={o.value}>
@@ -77,14 +77,14 @@ export function KatalogFilterBar({ filters, onChange, onReset }: KatalogFilterBa
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "var(--space-sm)",
           alignSelf: "flex-end",
           height: "48px",
           padding: "0 16px",
           background: "var(--color-surface)",
           border: "1px solid var(--color-border)",
           borderRadius: "var(--radius-md)",
-          fontSize: "15px",
+          fontSize: "var(--text-base)",
           fontWeight: 600,
           color: "var(--color-text)",
           cursor: "pointer",

@@ -50,7 +50,7 @@ export function TopAppBar({ greeting, notificationCount = 0 }: TopAppBarProps) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            fontSize: "14px",
+            fontSize: "var(--text-sm)",
             fontWeight: 600,
             letterSpacing: "0.03em",
             flexShrink: 0,
@@ -63,7 +63,7 @@ export function TopAppBar({ greeting, notificationCount = 0 }: TopAppBarProps) {
             style={{
               margin: 0,
               fontFamily: "var(--font-display)",
-              fontSize: "24px",
+              fontSize: "var(--text-2xl)",
               fontWeight: 600,
               color: "var(--color-primary)",
               lineHeight: 1.2,
@@ -74,7 +74,7 @@ export function TopAppBar({ greeting, notificationCount = 0 }: TopAppBarProps) {
           <p
             style={{
               margin: 0,
-              fontSize: "14px",
+              fontSize: "var(--text-sm)",
               color: "var(--color-text-muted)",
               whiteSpace: "nowrap",
               overflow: "hidden",

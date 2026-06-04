@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 const sectionHeading: React.CSSProperties = {
   margin: "0 0 var(--space-sm) 0",
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -53,7 +53,7 @@ export default function DokumentiLoading() {
               }}
             >
               <Skeleton height="22px" width="22px" />
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
+              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
                 <Skeleton height="16px" width="50%" />
                 <Skeleton height="14px" width="75%" />
               </div>

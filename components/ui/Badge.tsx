@@ -21,7 +21,7 @@ export function Badge({ tone, label }: BadgeProps) {
       style={{
         color,
         background: bg,
-        fontSize: "14px",
+        fontSize: "var(--text-sm)",
         fontWeight: 600,
         letterSpacing: "0.03em",
         padding: "4px 12px",

@@ -24,14 +24,14 @@ interface StatCardProps {
 export function StatCard({ label, sublabel, icon, iconColor, state }: StatCardProps) {
   return (
     <Card>
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-sm)" }}>
           <span style={{ color: ICON_COLOR[iconColor], display: "inline-flex" }}>
             <Icon name={icon} size={20} />
           </span>
           <span
             style={{
-              fontSize: "14px",
+              fontSize: "var(--text-sm)",
               fontWeight: 600,
               letterSpacing: "0.03em",
               color: "var(--color-text-muted)",
@@ -42,14 +42,14 @@ export function StatCard({ label, sublabel, icon, iconColor, state }: StatCardPr
         </div>
 
         {state.status === "loading" && (
-          <div aria-busy="true" aria-label={`Učitavanje: ${label}`} style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div aria-busy="true" aria-label={`Učitavanje: ${label}`} style={{ display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
             <Skeleton height="32px" width="48px" />
             <Skeleton height="14px" width="90px" />
           </div>
         )}
 
         {state.status === "error" && (
-          <p role="alert" style={{ margin: 0, color: "var(--color-error)", fontSize: "14px" }}>
+          <p role="alert" style={{ margin: 0, color: "var(--color-error)", fontSize: "var(--text-sm)" }}>
             Greška pri učitavanju
           </p>
         )}
@@ -59,7 +59,7 @@ export function StatCard({ label, sublabel, icon, iconColor, state }: StatCardPr
             <span
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "32px",
+                fontSize: "var(--text-3xl)",
                 fontWeight: 600,
                 lineHeight: 1.3,
                 color: "var(--color-text)",
@@ -67,7 +67,7 @@ export function StatCard({ label, sublabel, icon, iconColor, state }: StatCardPr
             >
               {state.data}
             </span>
-            <span style={{ fontSize: "14px", color: "var(--color-text-muted)" }}>{sublabel}</span>
+            <span style={{ fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>{sublabel}</span>
           </>
         )}
       </div>

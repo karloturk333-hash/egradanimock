@@ -25,7 +25,7 @@ export function DocListItem({ doc }: DocListItemProps) {
             style={{
               margin: 0,
               fontFamily: "var(--font-sans)",
-              fontSize: "16px",
+              fontSize: "var(--text-base)",
               fontWeight: 500,
               color: "var(--color-text)",
               whiteSpace: "nowrap",
@@ -35,7 +35,7 @@ export function DocListItem({ doc }: DocListItemProps) {
           >
             {doc.name}
           </h3>
-          <p style={{ margin: "2px 0 0 0", fontSize: "14px", color: "var(--color-text-muted)" }}>
+          <p style={{ margin: "2px 0 0 0", fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
             {doc.fileType} • {doc.fileSize}
           </p>
         </div>

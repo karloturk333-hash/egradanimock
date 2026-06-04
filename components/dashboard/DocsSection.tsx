@@ -41,7 +41,7 @@ export function DocsSkeleton() {
             borderBottom: i === 1 ? "none" : "1px solid var(--color-border)",
           }}
         >
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
             <Skeleton height="16px" width="180px" />
             <Skeleton height="13px" width="100px" />
           </div>

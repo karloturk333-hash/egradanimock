@@ -48,7 +48,7 @@ export function MessageListItem({ message, isActive = false, onSelect }: Message
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "12px" }}>
             <span
               style={{
-                fontSize: "14px",
+                fontSize: "var(--text-sm)",
                 fontWeight: isRead ? 500 : 600,
                 color: "var(--color-text-muted)",
                 whiteSpace: "nowrap",
@@ -58,17 +58,17 @@ export function MessageListItem({ message, isActive = false, onSelect }: Message
             >
               {senderName}
             </span>
-            <span style={{ fontSize: "13px", color: "var(--color-text-muted)", whiteSpace: "nowrap", flexShrink: 0 }}>
+            <span style={{ fontSize: "var(--text-xs)", color: "var(--color-text-muted)", whiteSpace: "nowrap", flexShrink: 0 }}>
               {formatShortDate(sentAt)}
             </span>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "8px", margin: "4px 0 2px 0" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--space-sm)", margin: "4px 0 2px 0" }}>
             <h3
               style={{
                 margin: 0,
                 fontFamily: "var(--font-sans)",
-                fontSize: "16px",
+                fontSize: "var(--text-base)",
                 fontWeight: isRead ? 500 : 700,
                 color: "var(--color-text)",
                 whiteSpace: "nowrap",
@@ -85,7 +85,7 @@ export function MessageListItem({ message, isActive = false, onSelect }: Message
           <p
             style={{
               margin: 0,
-              fontSize: "14px",
+              fontSize: "var(--text-sm)",
               color: "var(--color-text-muted)",
               whiteSpace: "nowrap",
               overflow: "hidden",
