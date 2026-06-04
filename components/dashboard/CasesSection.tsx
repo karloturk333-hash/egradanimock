@@ -34,7 +34,7 @@ export function CasesSkeleton() {
       {[1, 2, 3].map(i => (
         <Card key={i}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
               <Skeleton height="18px" width="60%" />
               <Skeleton height="14px" width="40%" />
             </div>

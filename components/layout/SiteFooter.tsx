@@ -53,7 +53,7 @@ const COLUMNS: FooterColumn[] = [
 ];
 
 const linkStyle: React.CSSProperties = {
-  fontSize: "15px",
+  fontSize: "var(--text-base)",
   color: "var(--color-text-muted)",
   textDecoration: "none",
 };
@@ -98,7 +98,7 @@ export function SiteFooter() {
             <div key={col.title} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <span
                 style={{
-                  fontSize: "15px",
+                  fontSize: "var(--text-base)",
                   fontWeight: 700,
                   color: "var(--color-text)",
                   marginBottom: "2px",
@@ -140,10 +140,10 @@ export function SiteFooter() {
           >
             <Landmark size={22} strokeWidth={2} />
           </span>
-          <p style={{ margin: 0, fontSize: "14px", color: "var(--color-text-muted)" }}>
+          <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
             © 2026 Vlada Republike Hrvatske
           </p>
-          <p style={{ margin: 0, fontSize: "14px", color: "var(--color-text-muted)" }}>
+          <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
             Sufinancirano sredstvima Europske unije
           </p>
         </div>

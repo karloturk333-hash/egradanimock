@@ -37,7 +37,7 @@ export function Sidebar() {
           style={{
             fontFamily: "var(--font-display)",
             fontWeight: 700,
-            fontSize: "22px",
+            fontSize: "var(--text-xl)",
             color: "var(--color-primary)",
           }}
         >
@@ -47,7 +47,7 @@ export function Sidebar() {
 
       <ul
         role="list"
-        style={{ listStyle: "none", margin: "16px 0 0 0", padding: "0 12px", display: "flex", flexDirection: "column", gap: "4px" }}
+        style={{ listStyle: "none", margin: "16px 0 0 0", padding: "0 12px", display: "flex", flexDirection: "column", gap: "var(--space-xs)" }}
       >
         {NAV_ITEMS.map(({ href, label, icon, unreadCount }) => {
           const active = pathname === href;
@@ -65,7 +65,7 @@ export function Sidebar() {
                   gap: "12px",
                   padding: "12px",
                   borderRadius: "var(--radius-md)",
-                  fontSize: "16px",
+                  fontSize: "var(--text-base)",
                   fontWeight: active ? 600 : 400,
                   color: active ? "var(--color-primary)" : "var(--color-text-muted)",
                   background: active ? "var(--color-primary-subtle)" : "transparent",

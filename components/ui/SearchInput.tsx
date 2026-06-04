@@ -27,14 +27,14 @@ export function SearchInput({
   const id = useId();
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "4px", width: "100%" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)", width: "100%" }}>
       <label
         htmlFor={id}
         className={labelHidden ? "eg-sr-only" : undefined}
         style={
           labelHidden
             ? undefined
-            : { fontSize: "14px", fontWeight: 600, color: "var(--color-text)" }
+            : { fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-text)" }
         }
       >
         {label}
@@ -62,7 +62,7 @@ export function SearchInput({
             width: "100%",
             height: "48px",
             padding: "0 16px 0 44px",
-            fontSize: "16px",
+            fontSize: "var(--text-base)",
             color: "var(--color-text)",
             background: "var(--color-surface)",
           }}

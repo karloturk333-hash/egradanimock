@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const sectionHeading: React.CSSProperties = {
   margin: "0 0 var(--space-md) 0",
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -40,7 +40,7 @@ export default function ProfilError({ error, reset }: ProfilErrorProps) {
           maxWidth: "520px",
         }}
       >
-        <p style={{ margin: 0, fontSize: "16px", color: "var(--color-error)" }}>
+        <p style={{ margin: 0, fontSize: "var(--text-base)", color: "var(--color-error)" }}>
           Profil trenutačno nije moguće dohvatiti.
         </p>
         <button
@@ -53,7 +53,7 @@ export default function ProfilError({ error, reset }: ProfilErrorProps) {
             border: "none",
             borderRadius: "var(--radius-md)",
             padding: "8px 24px",
-            fontSize: "16px",
+            fontSize: "var(--text-base)",
             fontWeight: 500,
             cursor: "pointer",
           }}

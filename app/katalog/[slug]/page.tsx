@@ -18,7 +18,7 @@ export function generateStaticParams() {
 const sectionHeading: React.CSSProperties = {
   margin: 0,
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -42,9 +42,9 @@ export default async function KatalogDetailPage({ params }: KatalogDetailPagePro
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "var(--space-sm)",
           alignSelf: "flex-start",
-          fontSize: "14px",
+          fontSize: "var(--text-sm)",
           fontWeight: 600,
           color: "var(--color-primary)",
           textDecoration: "none",
@@ -57,10 +57,10 @@ export default async function KatalogDetailPage({ params }: KatalogDetailPagePro
       <h2 style={sectionHeading}>{category.title}</h2>
 
       <Card style={{ maxWidth: "640px", display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
-        <p style={{ margin: 0, fontSize: "16px", color: "var(--color-text)" }}>
+        <p style={{ margin: 0, fontSize: "var(--text-base)", color: "var(--color-text)" }}>
           Stranica je u pripremi.
         </p>
-        <p style={{ margin: 0, fontSize: "15px", color: "var(--color-text-muted)" }}>
+        <p style={{ margin: 0, fontSize: "var(--text-base)", color: "var(--color-text-muted)" }}>
           {category.examples}
         </p>
       </Card>

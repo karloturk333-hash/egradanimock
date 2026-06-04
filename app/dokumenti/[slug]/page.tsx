@@ -20,9 +20,9 @@ export function generateStaticParams() {
 const backLink: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
-  gap: "8px",
+  gap: "var(--space-sm)",
   alignSelf: "flex-start",
-  fontSize: "14px",
+  fontSize: "var(--text-sm)",
   fontWeight: 600,
   color: "var(--color-primary)",
   textDecoration: "none",
@@ -31,7 +31,7 @@ const backLink: React.CSSProperties = {
 const sectionHeading: React.CSSProperties = {
   margin: 0,
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -39,14 +39,14 @@ const sectionHeading: React.CSSProperties = {
 const downloadBtn: React.CSSProperties = {
   display: "inline-flex",
   alignItems: "center",
-  gap: "8px",
+  gap: "var(--space-sm)",
   alignSelf: "flex-start",
   minHeight: "44px",
   padding: "0 20px",
   background: "var(--color-primary-strong)",
   color: "var(--color-on-primary)",
   borderRadius: "var(--radius-md)",
-  fontSize: "16px",
+  fontSize: "var(--text-base)",
   fontWeight: 600,
   textDecoration: "none",
 };
@@ -82,7 +82,7 @@ export default async function DokumentPreviewPage({ params }: DokumentPreviewPag
         <h2 style={sectionHeading}>{doc.name}</h2>
         {doc.isArchived && <Badge tone="neutral" label="Arhivirano" />}
       </div>
-      <p style={{ margin: 0, fontSize: "14px", color: "var(--color-text-muted)" }}>{meta}</p>
+      <p style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>{meta}</p>
 
       <a href={doc.downloadUrl} download={`${doc.name}.pdf`} className="eg-focusable" style={downloadBtn}>
         <Download size={18} strokeWidth={2} aria-hidden="true" />
@@ -97,7 +97,7 @@ export default async function DokumentPreviewPage({ params }: DokumentPreviewPag
         />
       </Card>
 
-      <p style={{ margin: 0, fontSize: "13px", color: "var(--color-text-muted)" }}>
+      <p style={{ margin: 0, fontSize: "var(--text-xs)", color: "var(--color-text-muted)" }}>
         Ako se pregled ne prikazuje,{" "}
         <a
           href={doc.downloadUrl}

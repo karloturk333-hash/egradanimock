@@ -41,7 +41,7 @@ export function NavIcon({ icon, size, active, unreadCount }: NavIconProps) {
             color: "var(--color-text-inverse)",
             borderRadius: "var(--radius-pill)",
             border: "1.5px solid var(--color-surface)",
-            fontSize: "11px",
+            fontSize: "var(--text-xs)",
             fontWeight: 700,
             lineHeight: 1,
           }}

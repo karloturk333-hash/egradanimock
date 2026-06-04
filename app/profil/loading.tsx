@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/Card";
 const sectionHeading: React.CSSProperties = {
   margin: "0 0 var(--space-md) 0",
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -22,9 +22,9 @@ export default function ProfilLoading() {
         style={{ display: "flex", flexDirection: "column", gap: "var(--gutter)" }}
       >
         <Card>
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--space-md)" }}>
             <Skeleton height="64px" width="64px" />
-            <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-sm)" }}>
               <Skeleton height="22px" width="160px" />
               <Skeleton height="14px" width="120px" />
             </div>

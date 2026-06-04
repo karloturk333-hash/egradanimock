@@ -79,7 +79,7 @@ export function PredmetiView({ cases }: PredmetiViewProps) {
         ))}
       </div>
 
-      <p aria-live="polite" style={{ margin: 0, fontSize: "14px", color: "var(--color-text-muted)" }}>
+      <p aria-live="polite" style={{ margin: 0, fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
         {`Pronađeno ${filtered.length} ${predmetWord(filtered.length)}`}
       </p>
 
@@ -119,13 +119,13 @@ export function PredmetiView({ cases }: PredmetiViewProps) {
 
 function filterChip(active: boolean): React.CSSProperties {
   return {
-    minHeight: "40px",
+    minHeight: "44px",
     padding: "0 16px",
     borderRadius: "var(--radius-pill)",
     border: active ? "1px solid var(--color-primary)" : "1px solid var(--color-border)",
     background: active ? "var(--color-primary-subtle)" : "var(--color-surface)",
     color: active ? "var(--color-primary)" : "var(--color-text)",
-    fontSize: "14px",
+    fontSize: "var(--text-sm)",
     fontWeight: 600,
     cursor: "pointer",
   };
@@ -137,7 +137,7 @@ const primaryBtn: React.CSSProperties = {
   border: "none",
   borderRadius: "var(--radius-md)",
   padding: "10px 24px",
-  fontSize: "16px",
+  fontSize: "var(--text-base)",
   fontWeight: 600,
   cursor: "pointer",
 };

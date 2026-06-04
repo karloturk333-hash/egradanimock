@@ -52,14 +52,14 @@ export function KatalogCard({ icon: Icon, title, examples, href }: KatalogCardPr
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: "8px",
+            gap: "var(--space-sm)",
           }}
         >
           <h3
             style={{
               margin: 0,
               fontFamily: "var(--font-sans)",
-              fontSize: "18px",
+              fontSize: "var(--text-lg)",
               fontWeight: 600,
               color: "var(--color-primary)",
             }}
@@ -74,7 +74,7 @@ export function KatalogCard({ icon: Icon, title, examples, href }: KatalogCardPr
           />
         </div>
 
-        <p style={{ margin: 0, fontSize: "15px", lineHeight: 1.5, color: "var(--color-text-muted)" }}>
+        <p style={{ margin: 0, fontSize: "var(--text-base)", lineHeight: 1.5, color: "var(--color-text-muted)" }}>
           {examples}
         </p>
       </Link>

@@ -6,7 +6,7 @@ import { DocsSection, DocsSkeleton } from "@/components/dashboard/DocsSection"
 const sectionHeading: React.CSSProperties = {
   margin: "0 0 var(--space-md) 0",
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 }

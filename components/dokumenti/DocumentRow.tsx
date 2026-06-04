@@ -62,12 +62,12 @@ export function DocumentRow({ doc, onPrint }: DocumentRowProps) {
         <Icon name="file-text" size={22} />
       </span>
       <div style={{ minWidth: 0 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-sm)", flexWrap: "wrap" }}>
           <h3
             style={{
               margin: 0,
               fontFamily: "var(--font-sans)",
-              fontSize: "16px",
+              fontSize: "var(--text-base)",
               fontWeight: 500,
               color: "var(--color-text)",
             }}
@@ -76,7 +76,7 @@ export function DocumentRow({ doc, onPrint }: DocumentRowProps) {
           </h3>
           {doc.isArchived && <Badge tone="neutral" label="Arhivirano" />}
         </div>
-        <p style={{ margin: "2px 0 0 0", fontSize: "14px", color: "var(--color-text-muted)" }}>
+        <p style={{ margin: "2px 0 0 0", fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
           {meta}
         </p>
       </div>
@@ -105,7 +105,7 @@ export function DocumentRow({ doc, onPrint }: DocumentRowProps) {
         <div style={openArea}>{inner}</div>
       )}
 
-      <div style={{ display: "flex", alignItems: "center", gap: "4px", flexShrink: 0, paddingRight: "var(--space-md)" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "var(--space-xs)", flexShrink: 0, paddingRight: "var(--space-md)" }}>
         <a
           href={doc.downloadUrl}
           download={`${doc.name}.pdf`}

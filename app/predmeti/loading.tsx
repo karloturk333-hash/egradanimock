@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/Skeleton";
 const sectionHeading: React.CSSProperties = {
   margin: "0 0 var(--space-md) 0",
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -41,7 +41,7 @@ export default function PredmetiLoading() {
                 gap: "12px",
               }}
             >
-              <div style={{ display: "flex", flexDirection: "column", gap: "8px", flex: 1 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-sm)", flex: 1 }}>
                 <Skeleton height="16px" width="55%" />
                 <Skeleton height="14px" width="35%" />
               </div>

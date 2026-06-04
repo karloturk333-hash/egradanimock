@@ -48,19 +48,19 @@ export function EmptyState({ icon: Icon, title, description, headingLevel = 3, m
         <Icon size={34} strokeWidth={1.75} />
       </span>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-xs)" }}>
         <Heading
           style={{
             margin: 0,
             fontFamily: "var(--font-display)",
-            fontSize: "22px",
+            fontSize: "var(--text-xl)",
             fontWeight: 600,
             color: "var(--color-text)",
           }}
         >
           {title}
         </Heading>
-        <p style={{ margin: 0, fontSize: "16px", color: "var(--color-text-muted)", maxWidth: "320px" }}>
+        <p style={{ margin: 0, fontSize: "var(--text-base)", color: "var(--color-text-muted)", maxWidth: "320px" }}>
           {description}
         </p>
       </div>

@@ -31,9 +31,9 @@ export default async function PorukaDetailPage({ params }: PorukaDetailPageProps
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "var(--space-sm)",
           alignSelf: "flex-start",
-          fontSize: "14px",
+          fontSize: "var(--text-sm)",
           fontWeight: 600,
           color: "var(--color-primary)",
           textDecoration: "none",

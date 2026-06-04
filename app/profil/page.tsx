@@ -8,7 +8,7 @@ import type { CitizenProfile } from "@/lib/types";
 const sectionHeading: React.CSSProperties = {
   margin: "0 0 var(--space-md) 0",
   fontFamily: "var(--font-display)",
-  fontSize: "24px",
+  fontSize: "var(--text-2xl)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -16,7 +16,7 @@ const sectionHeading: React.CSSProperties = {
 const cardTitle: React.CSSProperties = {
   margin: "0 0 var(--space-sm) 0",
   fontFamily: "var(--font-sans)",
-  fontSize: "16px",
+  fontSize: "var(--text-base)",
   fontWeight: 600,
   color: "var(--color-text)",
 };
@@ -28,12 +28,12 @@ const NIAS_LABEL: Record<CitizenProfile["niasLevel"], string> = {
 
 function Field({ label, value }: { label: string; value: string }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", gap: "16px", padding: "8px 0" }}>
-      <dt style={{ fontSize: "14px", color: "var(--color-text-muted)" }}>{label}</dt>
+    <div style={{ display: "flex", justifyContent: "space-between", gap: "var(--space-md)", padding: "8px 0" }}>
+      <dt style={{ fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>{label}</dt>
       <dd
         style={{
           margin: 0,
-          fontSize: "14px",
+          fontSize: "var(--text-sm)",
           fontWeight: 500,
           color: "var(--color-text)",
           textAlign: "right",
@@ -57,7 +57,7 @@ export default async function ProfilPage() {
 
       {/* Zaglavlje: avatar + ime + status vjerodajnice */}
       <Card>
-        <div style={{ display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-md)", flexWrap: "wrap" }}>
           <div
             aria-hidden="true"
             style={{
@@ -69,7 +69,7 @@ export default async function ProfilPage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "24px",
+              fontSize: "var(--text-2xl)",
               fontWeight: 600,
               flexShrink: 0,
             }}
@@ -81,16 +81,16 @@ export default async function ProfilPage() {
               style={{
                 margin: 0,
                 fontFamily: "var(--font-display)",
-                fontSize: "22px",
+                fontSize: "var(--text-xl)",
                 fontWeight: 600,
                 color: "var(--color-text)",
               }}
             >
               {p.fullName}
             </h3>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "6px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "var(--space-sm)", marginTop: "6px", flexWrap: "wrap" }}>
               <Badge tone="success" label="Potvrđen identitet" />
-              <span style={{ fontSize: "13px", color: "var(--color-text-muted)" }}>
+              <span style={{ fontSize: "var(--text-xs)", color: "var(--color-text-muted)" }}>
                 Korisnik od {formatDate(p.memberSince)}
               </span>
             </div>

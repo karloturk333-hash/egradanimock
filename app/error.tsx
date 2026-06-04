@@ -29,7 +29,7 @@ export default function DashboardError({ error, reset }: DashboardErrorProps) {
         maxWidth: "420px",
       }}
     >
-      <p style={{ margin: 0, fontSize: "16px", color: "var(--color-error)" }}>
+      <p style={{ margin: 0, fontSize: "var(--text-base)", color: "var(--color-error)" }}>
         Podatke trenutačno nije moguće dohvatiti.
       </p>
       <button
@@ -42,7 +42,7 @@ export default function DashboardError({ error, reset }: DashboardErrorProps) {
           border: "none",
           borderRadius: "var(--radius-md)",
           padding: "8px 24px",
-          fontSize: "16px",
+          fontSize: "var(--text-base)",
           fontWeight: 500,
           cursor: "pointer",
         }}
