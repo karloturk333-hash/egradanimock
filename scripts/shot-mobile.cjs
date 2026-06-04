@@ -6,8 +6,10 @@ const OUT = process.env.OUT_DIR || "/work/demo";
 const ROUTES = [
   { slug: "pocetna", path: "/" },
   { slug: "katalog", path: "/katalog" },
+  { slug: "predmeti", path: "/predmeti" },
   { slug: "dokumenti", path: "/dokumenti" },
   { slug: "poruke", path: "/poruke" },
+  { slug: "profil", path: "/profil" },
 ];
 
 (async () => {

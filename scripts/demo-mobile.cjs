@@ -63,57 +63,81 @@ async function typeSlowly(page, locator, text, label, d = 45) {
   await page.waitForTimeout(500);
   return true;
 }
+const reinject = async (page) => { await injectCursor(page); await injectSubtitleBar(page); };
 
 async function run(page) {
   await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-  await injectCursor(page); await injectSubtitleBar(page);
+  await reinject(page);
 
   if (REHEARSAL) {
     let ok = true;
-    ok &= await ensureVisible(page, page.getByRole('link', { name: 'Katalog', exact: true }), 'nav Katalog');
-    ok &= await ensureVisible(page, page.getByRole('link', { name: 'Dokumenti', exact: true }), 'nav Dokumenti');
+    for (const name of ['Katalog', 'Predmeti', 'Dokumenti', 'Profil']) {
+      ok &= await ensureVisible(page, page.getByRole('link', { name, exact: true }), `nav ${name}`);
+    }
     ok &= await ensureVisible(page, page.getByRole('link', { name: /Poruke/ }), 'nav Poruke');
     await page.goto(BASE + '/katalog', { waitUntil: 'networkidle' });
     ok &= await ensureVisible(page, page.getByRole('searchbox').first(), 'katalog search');
+    await page.goto(BASE + '/predmeti', { waitUntil: 'networkidle' });
+    ok &= await ensureVisible(page, page.getByRole('button', { name: 'Čeka plaćanje' }), 'predmeti filter');
     await page.goto(BASE + '/dokumenti', { waitUntil: 'networkidle' });
-    ok &= await ensureVisible(page, page.getByRole('tab', { name: /Arhiva/ }), 'dokumenti Arhiva tab');
+    ok &= await ensureVisible(page, page.getByRole('tab', { name: /Arhiva/ }), 'dokumenti Arhiva');
     ok &= await ensureVisible(page, page.getByRole('link', { name: /^Otvori:/ }).first(), 'dokument open');
+    await page.goto(BASE + '/profil', { waitUntil: 'networkidle' });
+    ok &= await ensureVisible(page, page.getByRole('switch', { name: 'SMS obavijesti' }), 'profil switch');
     if (!ok) { console.error('REHEARSAL FAILED'); process.exit(1); }
     console.log('REHEARSAL PASSED'); return;
   }
 
+  // 1) Dashboard
   await showSubtitle(page, 'eGrađani — redizajn portala (mobilni prikaz)');
-  await page.waitForTimeout(1500);
+  await page.waitForTimeout(1400);
   await showSubtitle(page, 'Dashboard: predmeti, dokumenti, statusi');
   await page.evaluate(() => window.scrollTo({ top: 280, behavior: 'smooth' }));
-  await page.waitForTimeout(1700);
+  await page.waitForTimeout(1500);
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  await page.waitForTimeout(900);
+  await page.waitForTimeout(800);
 
-  await showSubtitle(page, 'Katalog usluga');
-  await moveAndClick(page, page.getByRole('link', { name: 'Katalog', exact: true }), 'nav Katalog', 1300);
-  await injectCursor(page); await injectSubtitleBar(page);
+  // 2) Katalog
+  await showSubtitle(page, 'Katalog usluga — pretraga');
+  await moveAndClick(page, page.getByRole('link', { name: 'Katalog', exact: true }), 'nav Katalog', 1200);
+  await reinject(page);
   await showSubtitle(page, 'Pretraga usluga');
   await typeSlowly(page, page.getByRole('searchbox').first(), 'putovnica', 'pretraga');
-  await page.waitForTimeout(1500);
+  await page.waitForTimeout(1200);
 
+  // 3) Predmeti
+  await showSubtitle(page, 'Moji predmeti — filter po statusu');
+  await moveAndClick(page, page.getByRole('link', { name: 'Predmeti', exact: true }), 'nav Predmeti', 1200);
+  await reinject(page);
+  await showSubtitle(page, 'Filter: Čeka plaćanje');
+  await moveAndClick(page, page.getByRole('button', { name: 'Čeka plaćanje' }), 'filter ceka', 1100);
+  await moveAndClick(page, page.getByRole('button', { name: 'Svi' }), 'filter svi', 800);
+
+  // 4) Dokumenti
   await showSubtitle(page, 'Dokumenti — Aktivni / Arhiva');
-  await moveAndClick(page, page.getByRole('link', { name: 'Dokumenti', exact: true }), 'nav Dokumenti', 1300);
-  await injectCursor(page); await injectSubtitleBar(page);
-  await showSubtitle(page, 'Dokumenti — Aktivni / Arhiva');
-  await moveAndClick(page, page.getByRole('tab', { name: /Arhiva/ }), 'tab Arhiva', 1100);
-  await moveAndClick(page, page.getByRole('tab', { name: /Aktivni/ }), 'tab Aktivni', 800);
+  await moveAndClick(page, page.getByRole('link', { name: 'Dokumenti', exact: true }), 'nav Dokumenti', 1200);
+  await reinject(page);
+  await moveAndClick(page, page.getByRole('tab', { name: /Arhiva/ }), 'tab Arhiva', 1000);
+  await moveAndClick(page, page.getByRole('tab', { name: /Aktivni/ }), 'tab Aktivni', 700);
   await showSubtitle(page, 'Otvori dokument → pregled (PDF)');
-  await moveAndClick(page, page.getByRole('link', { name: /^Otvori:/ }).first(), 'otvori dokument', 1800);
-  await injectCursor(page); await injectSubtitleBar(page);
-  await page.waitForTimeout(1500);
+  await moveAndClick(page, page.getByRole('link', { name: /^Otvori:/ }).first(), 'otvori dokument', 1700);
+  await reinject(page);
+  await page.waitForTimeout(1200);
 
+  // 5) Profil
+  await showSubtitle(page, 'Moj profil — postavke');
+  await moveAndClick(page, page.getByRole('link', { name: 'Profil', exact: true }), 'nav Profil', 1200);
+  await reinject(page);
+  await showSubtitle(page, 'Postavke obavijesti (toggle)');
+  await moveAndClick(page, page.getByRole('switch', { name: 'SMS obavijesti' }), 'toggle SMS', 1200);
+
+  // 6) Poruke
   await showSubtitle(page, 'Korisnički pretinac (poruke)');
   await moveAndClick(page, page.getByRole('link', { name: /Poruke/ }), 'nav Poruke', 1400);
-  await injectCursor(page); await injectSubtitleBar(page);
-  await page.waitForTimeout(1600);
+  await reinject(page);
+  await page.waitForTimeout(1400);
   await showSubtitle(page, 'Pristupačan · mobile-first · 3 stanja podataka');
-  await page.waitForTimeout(1700);
+  await page.waitForTimeout(1600);
   await showSubtitle(page, '');
   await page.waitForTimeout(700);
 }
