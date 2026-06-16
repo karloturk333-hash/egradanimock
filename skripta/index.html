@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SKRIPTA — koncept proizvoda &amp; vizija</title>
+<style>
+  :root{
+    --crvena:#E63946;
+    --bijela:#F4F6F8;
+    --tinta:#0F1216;
+    --ugljen:#171C23;
+    --siva:#8A93A3;
+    --zelena:#2FBF71;
+    --rub:#232A33;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--tinta);
+    color:var(--bijela);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+  }
+  .mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace}
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
+
+  /* ---------- hero ---------- */
+  .hero{padding:78px 0 56px;text-align:center}
+  .hero .logo-ikona{width:120px;height:120px;margin:0 auto 28px;display:block}
+  .wordmark{
+    font-size:clamp(34px,9.5vw,56px);
+    font-weight:800;
+    letter-spacing:.16em;
+    text-indent:.16em;
+    line-height:1.1;
+  }
+  .tagline{
+    margin-top:14px;
+    font-size:12px;
+    letter-spacing:.32em;
+    text-indent:.32em;
+    color:var(--siva);
+    text-transform:uppercase;
+  }
+  .tagline b{color:var(--crvena);font-weight:600}
+  .hero .pitch{
+    margin:26px auto 0;
+    max-width:46ch;
+    font-size:17px;
+    color:#C6CDD6;
+  }
+  .hero .pitch b{color:var(--bijela);font-weight:700}
+  .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+  .badge{
+    font-size:11px;letter-spacing:.06em;
+    border:1px solid var(--rub);border-radius:999px;
+    padding:6px 13px;color:var(--siva);background:var(--ugljen);
+  }
+  .badge.free{color:var(--zelena);border-color:rgba(47,191,113,.4)}
+  .badge.oss{color:var(--crvena);border-color:rgba(230,57,70,.4)}
+
+  .hero .logo-ikona rect{opacity:0;transform:translateY(8px);animation:pad .55s ease forwards}
+  .hero .logo-ikona rect:nth-child(1){animation-delay:.05s}
+  .hero .logo-ikona rect:nth-child(2){animation-delay:.13s}
+  .hero .logo-ikona rect:nth-child(3){animation-delay:.21s}
+  .hero .logo-ikona rect:nth-child(4){animation-delay:.29s}
+  .hero .logo-ikona rect:nth-child(5){animation-delay:.37s}
+  .hero .logo-ikona rect:nth-child(6){animation-delay:.45s}
+  .hero .logo-ikona rect:nth-child(7){animation-delay:.53s}
+  .hero .logo-ikona rect:nth-child(8){animation-delay:.61s}
+  .hero .logo-ikona rect:nth-child(9){animation-delay:.69s}
+  .hero .logo-ikona rect:nth-child(10){animation-delay:.77s}
+  @keyframes pad{to{opacity:1;transform:translateY(0)}}
+  @media (prefers-reduced-motion: reduce){
+    .hero .logo-ikona rect{animation:none;opacity:1;transform:none}
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:46px 0;border-top:1px solid var(--rub)}
+  .eyebrow{
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--crvena);
+    margin-bottom:18px;
+  }
+  h2.naslov{
+    font-size:clamp(24px,5.4vw,30px);
+    font-weight:800;letter-spacing:-.01em;line-height:1.15;
+    margin-bottom:16px;
+  }
+  .lede{color:#C6CDD6;font-size:16px;max-width:56ch}
+  .lede + .lede{margin-top:14px}
+  .lede em{color:var(--bijela);font-style:normal;font-weight:600}
+
+  /* ---------- problem grid ---------- */
+  .problemi{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+  .problem{
+    background:var(--ugljen);border:1px solid var(--rub);border-radius:14px;padding:18px 16px;
+  }
+  .problem .nr{font-family:ui-monospace,monospace;font-size:12px;color:var(--crvena);letter-spacing:.1em}
+  .problem .t{font-weight:700;font-size:15px;margin:8px 0 6px}
+  .problem .d{font-size:13px;color:var(--siva)}
+
+  /* ---------- rjesenje pillars ---------- */
+  .pillari{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .pillar{display:flex;gap:13px;align-items:flex-start;
+    background:var(--ugljen);border:1px solid var(--rub);border-radius:12px;padding:15px 16px}
+  .pillar .kocka{width:14px;height:14px;border-radius:3px;background:var(--crvena);flex-shrink:0;margin-top:4px}
+  .pillar .t{font-weight:700;font-size:15px}
+  .pillar .d{font-size:13px;color:var(--siva);margin-top:3px}
+
+  /* ---------- proizvod / moduli ---------- */
+  .modul-blok{
+    background:var(--ugljen);border:1px solid var(--rub);border-radius:16px;
+    padding:20px 18px;margin-top:14px;
+  }
+  .modul-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .modul-head .ime{font-weight:800;font-size:16px;letter-spacing:.02em}
+  .modul-head .ime span{color:var(--siva);font-weight:500}
+  .modul-head .tag{margin-left:auto;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--siva)}
+  .modul p{font-size:14px;color:#C6CDD6;max-width:54ch}
+
+  /* mock: grafovi */
+  .mock-graf{margin-top:14px;background:var(--tinta);border:1px solid var(--rub);border-radius:12px;padding:14px}
+  .mock-graf .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+  .mock-graf .sym{font-weight:700;font-size:13px}
+  .mock-graf .chg{font-size:12px;color:var(--zelena);font-variant-numeric:tabular-nums}
+  .mock-graf svg{display:block;width:100%;height:auto}
+
+  /* mock: lekcije */
+  .mock-lekcije{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+  .lek{display:flex;align-items:center;gap:12px;background:var(--tinta);border:1px solid var(--rub);border-radius:10px;padding:11px 13px}
+  .lek .step{width:24px;height:24px;border-radius:6px;background:rgba(230,57,70,.14);color:var(--crvena);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+  .lek .lt{font-size:13px;font-weight:600}
+  .lek .meta{margin-left:auto;font-size:11px;color:var(--siva)}
+  .lek.done .step{background:rgba(47,191,113,.16);color:var(--zelena)}
+
+  /* mock: simulator */
+  .mock-sim{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .sim-kart{flex:1 1 0;min-width:120px;background:var(--tinta);border:1px solid var(--rub);border-radius:12px;padding:14px}
+  .sim-kart .lab{font-size:11px;color:var(--siva);letter-spacing:.04em}
+  .sim-kart .val{font-size:20px;font-weight:800;margin-top:5px;font-variant-numeric:tabular-nums}
+  .sim-kart .val.pos{color:var(--zelena)}
+
+  /* ---------- trziste funnel ---------- */
+  .funnel{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+  .fstep{background:var(--ugljen);border:1px solid var(--rub);border-radius:12px;padding:14px 16px;
+    display:flex;align-items:center;gap:14px}
+  .fstep .bar{height:8px;border-radius:999px;background:var(--crvena);flex-shrink:0}
+  .fstep .ftxt{min-width:0}
+  .fstep .fnum{font-weight:800;font-size:16px;font-variant-numeric:tabular-nums}
+  .fstep .fdesc{font-size:12px;color:var(--siva)}
+  .disclaimer{
+    margin-top:16px;font-size:12px;color:var(--siva);
+    border-left:2px solid var(--crvena);padding-left:12px;
+  }
+  .disclaimer b{color:var(--bijela);font-weight:600}
+
+  /* ---------- model ---------- */
+  .tiers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+  .tier{background:var(--ugljen);border:1px solid var(--rub);border-radius:16px;padding:20px 18px}
+  .tier.plus{border-color:rgba(47,191,113,.4)}
+  .tier .tname{font-weight:800;font-size:15px;letter-spacing:.02em}
+  .tier .tprice{font-size:13px;color:var(--siva);margin:4px 0 14px;font-variant-numeric:tabular-nums}
+  .tier.plus .tprice{color:var(--zelena)}
+  .tier ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .tier li{font-size:13px;color:#C6CDD6;padding-left:20px;position:relative}
+  .tier li::before{content:"";position:absolute;left:0;top:6px;width:9px;height:9px;border-radius:2px;background:var(--crvena)}
+  .tier.plus li::before{background:var(--zelena)}
+  .tier .soon{display:inline-block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--siva);border:1px solid var(--rub);border-radius:999px;padding:3px 9px;margin-left:8px;vertical-align:middle}
+  .prihod{margin-top:14px;font-size:13px;color:var(--siva)}
+  .prihod b{color:var(--bijela);font-weight:600}
+
+  /* ---------- roadmap ---------- */
+  .roadmap{position:relative;margin-top:10px;padding-left:24px}
+  .roadmap::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:var(--rub)}
+  .faza{position:relative;padding-bottom:20px}
+  .faza:last-child{padding-bottom:0}
+  .faza .dot{position:absolute;left:-24px;top:3px;width:14px;height:14px;border-radius:4px;background:var(--crvena)}
+  .faza.dalje .dot{background:transparent;border:1.5px dashed var(--siva)}
+  .faza .fz{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.12em;color:var(--crvena);text-transform:uppercase}
+  .faza.dalje .fz{color:var(--siva)}
+  .faza .ft{font-weight:700;font-size:15px;margin:3px 0 4px}
+  .faza .fd{font-size:13px;color:var(--siva);max-width:50ch}
+
+  /* ---------- vizija ---------- */
+  .vizija .lede{font-size:18px}
+  .vizija blockquote{
+    margin:24px 0 0;font-size:20px;font-weight:600;line-height:1.4;
+    color:var(--bijela);border-left:3px solid var(--crvena);padding-left:18px;max-width:48ch;
+  }
+  .cta{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap}
+  .cta a{
+    text-decoration:none;font-size:14px;font-weight:600;letter-spacing:.02em;
+    padding:12px 20px;border-radius:999px;border:1px solid var(--rub);color:var(--bijela);
+  }
+  .cta a.prim{background:var(--crvena);border-color:var(--crvena);color:#fff}
+
+  footer{padding:40px 0 72px;border-top:1px solid var(--rub)}
+  footer p{font-size:13px;color:var(--siva);max-width:54ch}
+  footer p + p{margin-top:10px}
+  footer .potpis{color:#5B6470;font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-top:22px}
+
+  @media (max-width:430px){
+    .problemi,.tiers{grid-template-columns:1fr}
+    .modul-head .tag{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!--
+  SKRIPTA — koncept proizvoda & vizija.
+  Open-source platforma za učenje ulaganja na hrvatskom. Besplatno za sve.
+  Znak: 10 kockica, 4 stupca (1-2-3-4) — šahovnica koja raste kao graf.
+  Brojke u ovom dokumentu su ILUSTRATIVNE pretpostavke, ne tvrdnje.
+-->
+
+<header class="hero wrap">
+  <svg class="logo-ikona" viewBox="0 0 96 96" role="img" aria-label="SKRIPTA znak — šahovnica koja raste kao graf" style="color:var(--bijela)">
+    <rect x="7.5"  y="70.5" width="18" height="18" rx="3" fill="#E63946"/>
+    <rect x="28.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/>
+    <rect x="28.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/>
+    <rect x="49.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/>
+    <rect x="49.5" y="49.5" width="18" height="18" rx="3" fill="currentColor"/>
+    <rect x="49.5" y="28.5" width="18" height="18" rx="3" fill="#E63946"/>
+    <rect x="70.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/>
+    <rect x="70.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/>
+    <rect x="70.5" y="28.5" width="18" height="18" rx="3" fill="currentColor"/>
+    <rect x="70.5" y="7.5"  width="18" height="18" rx="3" fill="#E63946"/>
+  </svg>
+  <h1 class="wordmark">SKRIPTA</h1>
+  <p class="tagline mono">Brojke, <b>ne priče.</b></p>
+
+  <p class="pitch">Open-source platforma koja uči Hrvate ulagati — <b>besplatno, na hrvatskom, bez paywalla.</b> Burza objašnjena kao da ti je kolega šalje skriptu prije ispita.</p>
+
+  <div class="badges">
+    <span class="badge oss">● Open source</span>
+    <span class="badge free">● Besplatno za sve</span>
+    <span class="badge">Koncept · vizija</span>
+  </div>
+</header>
+
+<!-- ===================== PROBLEM ===================== -->
+<section class="problem-sek">
+  <div class="wrap">
+    <p class="eyebrow mono">Problem</p>
+    <h2 class="naslov">Ulaganje je kod nas i dalje strano i strašno.</h2>
+    <p class="lede">Većina ljudi novac drži na računu jer je prag za prvi korak previsok — ne zbog matematike, nego zbog <em>jezika, povjerenja i pristupa</em>.</p>
+
+    <div class="problemi">
+      <div class="problem">
+        <div class="nr">01</div>
+        <div class="t">Sve je na engleskom</div>
+        <div class="d">Najbolji sadržaj o ulaganju pretpostavlja engleski i strana tržišta — ne ZSE, ne našu poreznu realnost.</div>
+      </div>
+      <div class="problem">
+        <div class="nr">02</div>
+        <div class="t">Iza paywalla</div>
+        <div class="d">Ozbiljni tečajevi i podaci naplaćuju se mjesečno. Tko tek istražuje, odustane prije prvog eura.</div>
+      </div>
+      <div class="problem">
+        <div class="nr">03</div>
+        <div class="t">Žargon umjesto objašnjenja</div>
+        <div class="d">P/E, dividenda, indeks — nabacani pojmovi bez konteksta. Zvuči kao klub u koji ne spadaš.</div>
+      </div>
+      <div class="problem">
+        <div class="nr">04</div>
+        <div class="t">Strah od prvog poteza</div>
+        <div class="d">Nema sigurnog mjesta za vježbu. Prvi „trade" je odmah pravim novcem — ili nikad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RJEŠENJE ===================== -->
+<section class="rjesenje-sek">
+  <div class="wrap">
+    <p class="eyebrow mono">Rješenje</p>
+    <h2 class="naslov">Skripta koja ide iz ruke u ruku.</h2>
+    <p class="lede" style="margin-bottom:22px">Tri stvari koje rade zajedno: <em>razumiješ tržište, naučiš kako, pa probaš bez rizika.</em> Sve besplatno, sve na hrvatskom, sve otvoreno.</p>
+
+    <div class="pillari">
+      <div class="pillar"><div class="kocka"></div><div><div class="t">Bez paywalla</div><div class="d">Cijela jezgra je i ostaje besplatna. Znanje ne smije ovisiti o pretplati.</div></div></div>
+      <div class="pillar"><div class="kocka"></div><div><div class="t">Na hrvatskom, za naše tržište</div><div class="d">ZSE, CROBEX10, domaći porezni kontekst — ne prevedeni tuđi primjeri.</div></div></div>
+      <div class="pillar"><div class="kocka"></div><div><div class="t">Open source</div><div class="d">Kod i sadržaj su otvoreni. Zajednica ispravlja, dopunjuje i raste s projektom.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROIZVOD ===================== -->
+<section class="proizvod-sek">
+  <div class="wrap">
+    <p class="eyebrow mono">Proizvod</p>
+    <h2 class="naslov">Tri modula, jedan sustav.</h2>
+
+    <!-- GRAFOVI -->
+    <div class="modul-blok">
+      <div class="modul-head">
+        <svg width="34" height="34" viewBox="0 0 96 96" style="color:var(--bijela)"><rect x="7.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="28.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="28.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="49.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="49.5" y="49.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="49.5" y="28.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="70.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="70.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="70.5" y="28.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="70.5" y="7.5" width="18" height="18" rx="3" fill="#E63946"/></svg>
+        <div class="ime">Skripta <span>·</span> Grafovi</div>
+        <div class="tag">Modul 01</div>
+      </div>
+      <p>ZSE pregled s dnevnim podacima, čisto i čitljivo. Bez Bloomberg-zida — samo ono što ti treba da shvatiš što se događa.</p>
+      <div class="mock-graf">
+        <div class="row"><span class="sym mono">CROBEX10</span><span class="chg mono">▲ +1,3%</span></div>
+        <svg viewBox="0 0 320 80" preserveAspectRatio="none" aria-hidden="true">
+          <polyline fill="none" stroke="#2FBF71" stroke-width="2" points="0,62 40,58 80,64 120,48 160,52 200,38 240,30 280,22 320,12"/>
+          <polyline fill="rgba(47,191,113,.10)" stroke="none" points="0,62 40,58 80,64 120,48 160,52 200,38 240,30 280,22 320,12 320,80 0,80"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- LEKCIJE -->
+    <div class="modul-blok">
+      <div class="modul-head">
+        <svg width="34" height="34" viewBox="0 0 96 96" style="color:var(--bijela)"><rect x="7.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="28.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="28.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="49.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="49.5" y="49.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="49.5" y="28.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="70.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="70.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="70.5" y="28.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="70.5" y="7.5" width="18" height="18" rx="3" fill="#E63946"/></svg>
+        <div class="ime">Skripta <span>·</span> Lekcije</div>
+        <div class="tag">Modul 02</div>
+      </div>
+      <p>Ulaganje od nule, korak po korak. Kratke lekcije pisane ljudskim jezikom — svaka gradi na prethodnoj, kao skripta.</p>
+      <div class="mock-lekcije">
+        <div class="lek done"><div class="step">✓</div><div class="lt">Što je dionica, zapravo?</div><div class="meta">4 min</div></div>
+        <div class="lek done"><div class="step">✓</div><div class="lt">Kako čitati graf i indeks</div><div class="meta">6 min</div></div>
+        <div class="lek"><div class="step">3</div><div class="lt">Rizik, diverzifikacija, vrijeme</div><div class="meta">7 min</div></div>
+        <div class="lek"><div class="step">4</div><div class="lt">Porez na kapitalni dobitak u HR</div><div class="meta">5 min</div></div>
+      </div>
+    </div>
+
+    <!-- SIMULATOR -->
+    <div class="modul-blok">
+      <div class="modul-head">
+        <svg width="34" height="34" viewBox="0 0 96 96" style="color:var(--bijela)"><rect x="7.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="28.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="28.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="49.5" y="70.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="49.5" y="49.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="49.5" y="28.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="70.5" y="70.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="70.5" y="49.5" width="18" height="18" rx="3" fill="#E63946"/><rect x="70.5" y="28.5" width="18" height="18" rx="3" fill="currentColor"/><rect x="70.5" y="7.5" width="18" height="18" rx="3" fill="#E63946"/></svg>
+        <div class="ime">Skripta <span>·</span> Simulator</div>
+        <div class="tag">Modul 03</div>
+      </div>
+      <p>Testiraj strategiju bez eura rizika. Virtualni portfelj na stvarnim ZSE kretanjima — pogriješi ovdje, ne na svom novcu.</p>
+      <div class="mock-sim">
+        <div class="sim-kart"><div class="lab">Virtualni portfelj</div><div class="val mono">10.000 €</div></div>
+        <div class="sim-kart"><div class="lab">Dobitak (30 d)</div><div class="val pos mono">+4,2%</div></div>
+        <div class="sim-kart"><div class="lab">Rizik bez gubitka</div><div class="val mono">0 €</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRŽIŠTE ===================== -->
+<section class="trziste-sek">
+  <div class="wrap">
+    <p class="eyebrow mono">Tržište</p>
+    <h2 class="naslov">Mali, ali brzo budući krug ljudi.</h2>
+    <p class="lede" style="margin-bottom:20px">Hrvatska ima nizak udio građana koji ulažu — što znači da je gotovo svatko tko želi početi <em>nepokriven</em>. Skripta cilja taj prvi korak.</p>
+
+    <div class="funnel">
+      <div class="fstep"><div class="bar" style="width:100%"></div><div class="ftxt"><div class="fnum mono">~3,8 mil.</div><div class="fdesc">Stanovnika Hrvatske</div></div></div>
+      <div class="fstep"><div class="bar" style="width:62%"></div><div class="ftxt"><div class="fnum mono">~1,4 mil.</div><div class="fdesc">Radno aktivnih s nešto ušteđevine — potencijalno zainteresirani</div></div></div>
+      <div class="fstep"><div class="bar" style="width:30%"></div><div class="ftxt"><div class="fnum mono">~300 tis.</div><div class="fdesc">Aktivno razmišlja o ulaganju, ali ne zna gdje početi</div></div></div>
+      <div class="fstep"><div class="bar" style="width:12%"></div><div class="ftxt"><div class="fnum mono">~30 tis.</div><div class="fdesc">Realan rani krug — prvi korisnici Skripte</div></div></div>
+    </div>
+
+    <p class="disclaimer"><b>Napomena:</b> brojke su <b>ilustrativne pretpostavke</b> radi ocrtavanja prilike, a ne provjereni podaci. Prije bilo kakve odluke treba ih zamijeniti stvarnim izvorima (ZSE, HANFA, DZS).</p>
+  </div>
+</section>
+
+<!-- ===================== MODEL ===================== -->
+<section class="model-sek">
+  <div class="wrap">
+    <p class="eyebrow mono">Model</p>
+    <h2 class="naslov">Besplatno danas. Održivo sutra.</h2>
+    <p class="lede" style="margin-bottom:20px">Cilj nije profit nego <em>da ljudi nauče</em> — i da projekt zasluži povjerenje zajednice. Jezgra je besplatna zauvijek; sve iznad toga je dobrovoljno.</p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tname">Skripta</div>
+        <div class="tprice mono">0 € · zauvijek</div>
+        <ul>
+          <li>Grafovi — ZSE, dnevni podaci</li>
+          <li>Lekcije — cijeli put od nule</li>
+          <li>Simulator — virtualni portfelj</li>
+          <li>Otvoren kod i sadržaj</li>
+        </ul>
+      </div>
+      <div class="tier plus">
+        <div class="tname">Skripta Plus <span class="soon">poslije</span></div>
+        <div class="tprice mono">kasnije · dobrovoljno</div>
+        <ul>
+          <li>Napredne analize i alati</li>
+          <li>Povijesni podaci, izvoz</li>
+          <li>Podrška razvoju projekta</li>
+          <li>Nikad ne zaključava jezgru</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="prihod"><b>Kako se to plaća:</b> referral partnerstva s brokerima (transparentno označena), dobrovoljni Plus poslije, eventualne donacije i grantovi za open-source. <b>Nijedan euro ne dolazi iz zaključavanja osnovnog znanja.</b></p>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section class="roadmap-sek">
+  <div class="wrap">
+    <p class="eyebrow mono">Plan</p>
+    <h2 class="naslov">Kockica po kockica.</h2>
+    <div class="roadmap">
+      <div class="faza"><div class="dot"></div><div class="fz mono">Faza 1 · temelj</div><div class="ft">Grafovi + prvih 10 lekcija</div><div class="fd">ZSE pregled i osnovni put od nule. Brend, domena (skripta.app), otvoreni repo.</div></div>
+      <div class="faza"><div class="dot"></div><div class="fz mono">Faza 2 · vježba</div><div class="ft">Simulator</div><div class="fd">Virtualni portfelj na stvarnim kretanjima. Prvi krug korisnika i povratne informacije.</div></div>
+      <div class="faza"><div class="dot"></div><div class="fz mono">Faza 3 · zajednica</div><div class="ft">Doprinosi i Plus</div><div class="fd">Otvaranje za vanjske doprinose sadržaju, prvi dobrovoljni Plus, referral partnerstva.</div></div>
+      <div class="faza dalje"><div class="dot"></div><div class="fz mono">Faza 4 · raste s tobom</div><div class="ft">Skripta · ____</div><div class="fd">Sljedeći modul definira zajednica — sustav je namjerno ostavljen otvorenim.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIZIJA ===================== -->
+<section class="vizija">
+  <div class="wrap">
+    <p class="eyebrow mono">Vizija</p>
+    <h2 class="naslov">Da prvi korak prestane biti strašan.</h2>
+    <p class="lede">Ovo nije startup u potrazi za izlazom. To je pokušaj da financijska pismenost kod nas postane <em>javno dobro</em> — besplatno, otvoreno, na našem jeziku. Ako jedan čovjek shvati svoj prvi graf zbog Skripte, dokument je odradio svoje.</p>
+    <blockquote>„Burza objašnjena kao da ti je kolega šalje skriptu prije ispita."</blockquote>
+    <div class="cta">
+      <a class="prim" href="#">Pogledaj kod</a>
+      <a href="#">Doprinesi</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong style="color:var(--bijela)">Provjereno:</strong> skripta.hr drži tvrtka za fotokopirne uređaje iz Osijeka — druga djelatnost, brend je čist. Domena ide na skripta.app, skripta.finance ili sličnu varijantu.</p>
+    <p>Sve je čisti vektor (SVG) i jedan HTML — od favicona do ovog dokumenta. Bez fontova za licencirati, bez ovisnosti, bez builda.</p>
+    <p style="color:#6B7480">Sadržaj je koncept i osobna vizija. Brojke su ilustrativne i ne predstavljaju investicijski savjet.</p>
+    <p class="potpis mono">Koncept · Skripta · proizvod &amp; vizija · 10 kockica · 1 dijagonala</p>
+  </div>
+</footer>
+
+</body>
+</html>
