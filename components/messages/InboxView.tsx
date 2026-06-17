@@ -26,16 +26,14 @@ export function InboxView({ messages }: InboxViewProps) {
     return () => mq.removeEventListener("change", update);
   }, []);
 
-  // U split prikazu uvijek imamo odabranu poruku (prva ako ništa nije odabrano).
-  useEffect(() => {
-    if (isSplit && selectedId === null && messages.length > 0) {
-      setSelectedId(messages[0].id);
-    }
-  }, [isSplit, selectedId, messages]);
-
   if (messages.length === 0) {
     return <InboxEmptyState />;
   }
+
+  // U split prikazu uvijek imamo odabranu poruku (prva ako ništa nije odabrano).
+  // Izvedeno tijekom rendera — bez setState u efektu (izbjegava kaskadne rendere).
+  const effectiveSelectedId =
+    isSplit && selectedId === null ? messages[0].id : selectedId;
 
   function handleSelect(e: React.MouseEvent<HTMLAnchorElement>, message: Message) {
     // Split: presretni navigaciju i prikaži detalj u stupcu.
@@ -47,7 +45,7 @@ export function InboxView({ messages }: InboxViewProps) {
     // List-only (mobilni/tablet): ne diramo — <a href="/poruke/[id]"> navigira nativno.
   }
 
-  const selected = messages.find((m) => m.id === selectedId) ?? null;
+  const selected = messages.find((m) => m.id === effectiveSelectedId) ?? null;
 
   return (
     <div style={{ display: "flex", alignItems: "flex-start", gap: "var(--gutter)" }}>
@@ -69,7 +67,7 @@ export function InboxView({ messages }: InboxViewProps) {
           <MessageListItem
             key={message.id}
             message={message}
-            isActive={isSplit && message.id === selectedId}
+            isActive={isSplit && message.id === effectiveSelectedId}
             onSelect={(e) => handleSelect(e, message)}
           />
         ))}

@@ -1,5 +1,7 @@
 # eGrađani — redizajn državnog portala (koncept)
 
+[![e2e](https://github.com/karloturk333-hash/egradanimock/actions/workflows/e2e.yml/badge.svg?branch=main)](https://github.com/karloturk333-hash/egradanimock/actions/workflows/e2e.yml)
+
 > Moderan, **pristupačan** (WCAG AA) i **mobile-first** redizajn korisničkog portala. Portfolio koncept: **Next.js App Router**, dizajn-sistem na tokenima, te **Playwright e2e** na 3 ekrana.
 
 <p align="center"><img src="demo/demo-mobile.gif" width="300" alt="Mobilni demo"></p>
@@ -84,4 +86,4 @@ Folderi = rute. `generateStaticParams` + `dynamicParams = false` → unaprijed i
 
 ---
 
-<sub>Portfolio koncept. Sav sadržaj je mock i nije povezan s pravim eGrађani sustavom. Sljedeće: stranice Predmeti / Profil, animacije prijelaza.</sub>
+<sub>Portfolio koncept. Sav sadržaj je mock i nije povezan s pravim eGrađani sustavom. Sljedeće: animacije prijelaza između ruta i širenje e2e pokrivenosti na sve stranice.</sub>
